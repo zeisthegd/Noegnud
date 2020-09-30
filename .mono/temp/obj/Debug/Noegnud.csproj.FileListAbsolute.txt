@@ -1,0 +1,8 @@
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\bin\Debug\Noegnud.dll
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\bin\Debug\Noegnud.pdb
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.csprojAssemblyReference.cache
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.csproj.CoreCompileInputs.cache
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfoInputs.cache
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfo.cs
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.dll
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.pdb
