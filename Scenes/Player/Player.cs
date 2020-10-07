@@ -3,7 +3,7 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	static string spriteSheetPath = "res://Assets/Player/Sheets/Knight.png";
+	static string spriteSheetPath = "res://Assets/Art/Player/Sheets/Knight.png";
 	const string spriteNodeName = "Sprite";
 	const string animationPlayerName = "AnimationPlayer";
 
@@ -27,7 +27,7 @@ public class Player : KinematicBody2D
 
 	private void InitializePlayer()
 	{
-		playerMovementHandler = PlayerMovementHandler.CreateNewHandlerOfPlayer(this);
+		playerMovementHandler = new PlayerMovementHandler(this);
 		rotationHandler = new PlayerRotationHandler(this);
 		TextureHandler.ChangePlayerTexture(spriteSheet,spriteSheetPath);
 	}
@@ -43,4 +43,5 @@ public class Player : KinematicBody2D
 		playerMovementHandler.ApplyPhysics();
 	}
 
+	
 }

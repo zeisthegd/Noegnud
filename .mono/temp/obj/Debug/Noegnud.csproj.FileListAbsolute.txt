@@ -6,3 +6,11 @@ C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.A
 C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfo.cs
 C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.dll
 C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.pdb
+E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\bin\Debug\Noegnud.dll
+E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\bin\Debug\Noegnud.pdb
+E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\obj\Debug\Noegnud.csprojAssemblyReference.cache
+E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\obj\Debug\Noegnud.csproj.CoreCompileInputs.cache
+E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfoInputs.cache
+E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfo.cs
+E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\obj\Debug\Noegnud.dll
+E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\obj\Debug\Noegnud.pdb

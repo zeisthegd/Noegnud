@@ -14,14 +14,9 @@ class PlayerMovementHandler
 
 	private int runSpeed = 100;
 
-	private PlayerMovementHandler(Player player)
+	public PlayerMovementHandler(Player player)
 	{
 		this.player = player;
-	}
-
-	public static PlayerMovementHandler CreateNewHandlerOfPlayer(Player player)
-	{
-		return new PlayerMovementHandler(player);
 	}
 
 	public void HandleMoveInput()
