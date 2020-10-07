@@ -3,7 +3,7 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	static string spriteSheetPath = "res://Assets/Art/Player/Sheets/Knight.png";
+	static string spriteSheetPath = "res://Assets/Art/Player/Player.png";
 	const string spriteNodeName = "Sprite";
 	const string animationPlayerName = "AnimationPlayer";
 
@@ -11,7 +11,10 @@ public class Player : KinematicBody2D
 	AnimationPlayer animationPlayer;
 
 	PlayerMovementHandler playerMovementHandler;
-	PlayerRotationHandler rotationHandler;
+
+	PlayerStateMachine playerStateMachine;
+
+	
 
 	public override void _Ready()
 	{	
@@ -23,25 +26,32 @@ public class Player : KinematicBody2D
 	{
 		spriteSheet = (Sprite)GetNode(spriteNodeName);
 		animationPlayer = (AnimationPlayer)GetNode(animationPlayerName);
+		
 	}
 
 	private void InitializePlayer()
 	{
 		playerMovementHandler = new PlayerMovementHandler(this);
-		rotationHandler = new PlayerRotationHandler(this);
 		TextureHandler.ChangePlayerTexture(spriteSheet,spriteSheetPath);
+
+		playerStateMachine = new PlayerStateMachine(this);
 	}
 
 	public override void _Process(float delta)
 	{
 		playerMovementHandler.HandleMoveInput();
-		rotationHandler.MakePlayerLookAtCursor(spriteSheet);
+
+		playerStateMachine.HandleKeypressEvent();
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
 		playerMovementHandler.ApplyPhysics();
 	}
+	#region Properties
 
-	
+	public AnimationPlayer AnimationPlayer { get => animationPlayer; }
+
+	#endregion
+
 }
