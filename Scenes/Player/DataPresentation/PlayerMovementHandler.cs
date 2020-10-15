@@ -15,7 +15,7 @@ class PlayerMovementHandler
 	private string inputLeft = "move_left", inputRight = "move_right",
 		inputUp = "move_up", inputDown = "move_down";
 
-	private int runSpeed = 80; 
+	private int runSpeed = 100; 
 
     
 

@@ -46,16 +46,16 @@ abstract class PlayerState
     {
         animationDirection = AnimationDirectionController.GetCurrentMovingDirection();
     }
-    protected void ChangeToIdling()
+    public void ChangeToIdling()
     {
         playerStateMachine.CurrentState = playerStateMachine.PlayerIdlingState;
     }
 
-    protected void ChangeToRunning()
+    public void ChangeToRunning()
     {
         playerStateMachine.CurrentState = playerStateMachine.PlayerRunningState;
     }
-    protected void ChangeToAttacking()
+    public void ChangeToAttacking()
     {
         playerStateMachine.CurrentState = playerStateMachine.PlayerAttackingState;
     }

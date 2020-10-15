@@ -35,6 +35,11 @@ class PlayerStateMachine
         currentState.HandleKeypressEvent();
     }
 
+    public void AttackAnimationFinished()
+    {
+        currentState.ChangeToIdling();
+    }
+
 
     internal PlayerState CurrentState {set => currentState = value; }
     internal PlayerState PlayerRunningState { get => playerRunningState; }
@@ -43,4 +48,5 @@ class PlayerStateMachine
 
     public Player Player { get => player; }
     
+
 }

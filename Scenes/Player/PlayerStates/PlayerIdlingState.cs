@@ -23,7 +23,7 @@ class PlayerIdlingState : PlayerState
         if (PlayerMovementHandler.PlayerVelocity != Vector2.Zero)
             ChangeToRunning();
 
-        playerStateMachine.Player.AnimationPlayer.Play("Idle" + animationDirection);
+       
     }
     public override void PressLeft()
     {
@@ -50,5 +50,6 @@ class PlayerIdlingState : PlayerState
     public override void PlayAnimation()
     {
         base.PlayAnimation();
+        playerStateMachine.Player.AnimationPlayer.Play("Idle" + animationDirection);
     }
 }

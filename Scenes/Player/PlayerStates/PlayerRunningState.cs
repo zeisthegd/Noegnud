@@ -18,13 +18,13 @@ class PlayerRunningState : PlayerState
         PressRight();
         PressUp();
         PressDown();
-
+        PressAttack();
         PlayAnimation();
 
         if (PlayerMovementHandler.PlayerVelocity == Vector2.Zero)
             ChangeToIdling();
 
-        playerStateMachine.Player.AnimationPlayer.Play("Run" + animationDirection);
+        
     }
     public override void PressLeft()
     {
@@ -42,9 +42,14 @@ class PlayerRunningState : PlayerState
     {
         base.PressDown();
     }
+    public override void PressAttack()
+    {
+        base.PressAttack();
+    }
     public override void PlayAnimation()
     {
         base.PlayAnimation();
+        playerStateMachine.Player.AnimationPlayer.Play("Run" + animationDirection);
     }
 
 }

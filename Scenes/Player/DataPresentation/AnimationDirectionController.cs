@@ -11,13 +11,13 @@ class AnimationDirectionController
     public static string GetCurrentMovingDirection()
     {
 
-        if (PlayerMovementHandler.PlayerVelocity.x < 0)
+        if (Input.IsActionPressed("move_left"))
             return currentAnimation = "Left";
-        else if (PlayerMovementHandler.PlayerVelocity.x > 0)
+        else if (Input.IsActionPressed("move_right"))
             return currentAnimation = "Right";
-        if (PlayerMovementHandler.PlayerVelocity.y < 0)
+        if (Input.IsActionPressed("move_up"))
             return currentAnimation = "Up";
-        else if (PlayerMovementHandler.PlayerVelocity.y > 0)
+        else if (Input.IsActionPressed("move_down"))
             return currentAnimation = "Down";
 
         return currentAnimation;

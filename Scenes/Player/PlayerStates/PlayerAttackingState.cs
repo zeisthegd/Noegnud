@@ -12,19 +12,8 @@ class PlayerAttackingState: PlayerState
     }
 
     public override void HandleKeypressEvent()
-    {
-        PressLeft();
-        PressRight();
-        PressUp();
-        PressDown();
-        PressAttack();
-
-        PlayAnimation();    
-
-        playerStateMachine.Player.AnimationPlayer.Play("Attack" + animationDirection);
-
-        if (PlayerMovementHandler.PlayerVelocity == Vector2.Zero)
-            ChangeToIdling();
+    {       
+        PlayAnimation();          
     }
     public override void PressLeft()
     {
@@ -43,14 +32,17 @@ class PlayerAttackingState: PlayerState
 
     }
 
-    public override void PressAttack()
-    {
-        base.PressAttack();
-    }
-
 
     public override void PlayAnimation()
     {
         base.PlayAnimation();
+        
+        if(!IsPlayingAttackAnimation())
+            playerStateMachine.Player.AnimationPlayer.Play("Attack" + animationDirection);
+    }
+
+    private bool IsPlayingAttackAnimation()
+    {
+        return playerStateMachine.Player.AnimationPlayer.CurrentAnimation.StartsWith("Attack");
     }
 }
