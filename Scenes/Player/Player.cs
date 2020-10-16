@@ -13,7 +13,11 @@ public class Player : KinematicBody2D
 
 	PlayerMovementHandler playerMovementHandler;
 	PlayerStateMachine playerStateMachine;
+
+	Hurtbox hurtBox;
+	PlayerStats playerStats;
 	#endregion
+
 	#region Override Methods
 	public override void _Ready()
 	{
@@ -31,9 +35,12 @@ public class Player : KinematicBody2D
 		playerMovementHandler.ApplyPhysics();
 	}
 	#endregion
+
 	#region Initialize Methods
 	private void InitializeAllChilds()
 	{
+		playerStats = (PlayerStats)GetNode("PlayerStats");
+		hurtBox = (Hurtbox)GetNode("Hurtbox");
 		spriteSheet = (Sprite)GetNode(spriteNodeName);
 		animationPlayer = (AnimationPlayer)GetNode(animationPlayerName);
 	}
@@ -44,7 +51,9 @@ public class Player : KinematicBody2D
 
 		playerStateMachine = new PlayerStateMachine(this);
 	}
+
 	#endregion
+
 	#region Properties
 	public AnimationPlayer AnimationPlayer { get => animationPlayer; }
 	#endregion
@@ -55,5 +64,34 @@ public class Player : KinematicBody2D
 			playerStateMachine.AttackAnimationFinished();
 	}
 
+	private void _on_Hurtbox_area_entered(Area2D area)
+	{
+		TakeDamageFromMonster(area);
+	}
+
+	private void _on_PlayerStats_OutOfHealth()
+	{
+		CombatEffect.CreateDeathEffect(this);
+		QueueFree();
+	}
+
+	private void TakeDamageFromMonster(Area2D area)
+	{
+		if (area is Hitbox hitbox)
+		{
+			playerStats.CurrentHealth -= hitbox.Damage;
+			if (playerStats.CurrentHealth >= 0)
+			{
+				hurtBox.CreateHitEffect();
+				hurtBox.StartInvincibility(0.5F);
+			}
+		}
+	}
+
 	#endregion
 }
+
+
+
+
+

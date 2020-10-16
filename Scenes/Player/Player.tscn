@@ -1,7 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Art/Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/Generals/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Generals/Hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player/PlayerStats.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 10.3985 )
@@ -291,19 +294,15 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9, 10, 11 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=14]
-radius = 8.1175
-height = 13.9103
-
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 60
-frame = 37
+frame = 36
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2( -0.303666, 2.50914 )
 shape = SubResource( 1 )
 
@@ -326,11 +325,19 @@ anims/RunUp = SubResource( 13 )
 position = Vector2( 0, 4.66299 )
 rotation = 1.5708
 
-[node name="SwordArea" type="Area2D" parent="SwordPosition" groups=[
-"PlayerWeapon",
-]]
+[node name="SwordArea" parent="SwordPosition" instance=ExtResource( 3 )]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordPosition/SwordArea"]
-position = Vector2( 15.2787, 0.198429 )
-shape = SubResource( 14 )
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -0.303666, 2.50914 )
+shape = SubResource( 1 )
+
+[node name="PlayerStats" parent="." instance=ExtResource( 5 )]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="OutOfHealth" from="PlayerStats" to="." method="_on_PlayerStats_OutOfHealth"]
+
+[editable path="Hurtbox"]

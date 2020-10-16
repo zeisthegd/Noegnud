@@ -7,4 +7,26 @@ public class Bat : Monster
 	{
 		base._Ready();
 	}
+	public override void _Process(float delta)
+	{
+		base._Process(delta);
+	}
+
+	public override void _PhysicsProcess(float delta)
+	{
+		base._PhysicsProcess(delta);
+	}
+
+	protected override void StayIdle()
+	{
+		base.StayIdle();
+	}
+	protected override void GoWandering()
+	{
+		base.GoWandering();
+	}
+	protected override void ChasePlayer()
+	{
+		base.ChasePlayer();
+	}
 }

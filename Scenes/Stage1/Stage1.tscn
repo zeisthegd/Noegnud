@@ -6,23 +6,11 @@
 [node name="Stage1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -85.8165, 25.4271 )
+position = Vector2( -108.595, 19.6001 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 zoom = Vector2( 0.5, 0.5 )
-
-[node name="Bat" parent="." instance=ExtResource( 2 )]
-position = Vector2( -259.46, 39.1449 )
-
-[node name="Bat2" parent="." instance=ExtResource( 2 )]
-position = Vector2( -160.93, 74.6368 )
-
-[node name="Bat3" parent="." instance=ExtResource( 2 )]
-position = Vector2( -131.795, -12.2391 )
-
-[node name="Bat4" parent="." instance=ExtResource( 2 )]
-position = Vector2( -39.2671, 67.1232 )
 
 [node name="Bat5" parent="." instance=ExtResource( 2 )]
 position = Vector2( -167.286, 24.8421 )
