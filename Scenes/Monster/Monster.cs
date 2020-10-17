@@ -1,8 +1,9 @@
-using Godot;
+﻿using Godot;
 using System;
 
 public class Monster : KinematicBody2D
 {
+	//Các trạng thái khác nhau của Monster
 	enum MonsterState
 	{
 		IDLE,
@@ -10,24 +11,22 @@ public class Monster : KinematicBody2D
 		CHASE
 	}
 
-	Sprite sprite;
-
+	protected Sprite sprite;
+	protected AnimationPlayer animationPlayer;
 	
 
-	PlayerDetectionZone playerDetectionZone;
-
-	Vector2 velocity = new Vector2();
-	Vector2 knockBack = new Vector2();
-
-	MonsterStats stats;
-	Hurtbox hurtBox;
-
-	const int MAX_SPEED = 50;
-	const int FRICTION = 30;
+	Vector2 velocity = new Vector2();//Tốc độ của Monster
+	Vector2 knockBack = new Vector2();//Khi bị tấn công Monster sẽ di chuyển bằng vector Knockback
 
 
+	protected MonsterStats stats;//Các thông số của Monster
+	protected PlayerDetectionZone playerDetectionZone;//Khu vực mà Monster có thể nhìn thấy Player
+	protected Hurtbox hurtBox;
 
-	MonsterState currentState = MonsterState.IDLE;
+	const int MAX_SPEED = 50;//Tốc độ di chuyển tối đa của Monster 
+	const int FRICTION = 80;
+
+	MonsterState currentState = MonsterState.IDLE;//Khởi đầu MonsterState là tuần tra
 	
 	public override void _Ready()
 	{
@@ -35,6 +34,7 @@ public class Monster : KinematicBody2D
 		playerDetectionZone = (PlayerDetectionZone)GetNode("PlayerDetectionZone");
 		stats = (MonsterStats)GetNode("MonsterStats");
 		hurtBox = (Hurtbox)GetNode("Hurtbox");
+		animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
 	}
 
 	public override void _Process(float delta)
@@ -48,11 +48,14 @@ public class Monster : KinematicBody2D
 	{
 		base._PhysicsProcess(delta);
 
-		velocity = MoveAndSlide(velocity);
+		if(knockBack == Vector2.Zero)//Khi không bị tấn công
+			velocity = MoveAndSlide(velocity);
 	}
 
+	//StateMachine mini
 	private void AutoPilot()
 	{
+		//Kiểm tra state hiện tại
 		switch(currentState)
 		{
 			case MonsterState.IDLE:
@@ -77,15 +80,18 @@ public class Monster : KinematicBody2D
 
 	protected virtual void StayIdle()
 	{
+		//MoveToward là hàm làm thay đổi giá trị của một vector cho tới khi nó bằng một vector khác, theo một giá trị cho trước
+		//Ở đây velocity sẽ đi dần về phía Vector2.Zero (0,0) với giá trị thay đổi theo thời gian là FRICTION * delta(1/60);
 		velocity = velocity.MoveToward(Vector2.Zero, FRICTION * GetPhysicsProcessDeltaTime());
 		SeekPlayer();
 	}
 	protected virtual void GoWandering()
 	{
-
+		//TODO
 	}
 	protected virtual void ChasePlayer()
 	{
+		//
 		Player player = playerDetectionZone.Player;
 		if (player != null)
 		{
@@ -98,42 +104,49 @@ public class Monster : KinematicBody2D
 
 	private void SeekPlayer()
 	{
-		if(playerDetectionZone.SpottedPlayer())
+		//Nếu playerDetectionZone có Player thì chuyển sang truy đuổi
+		if (playerDetectionZone.SpottedPlayer())
 		{
 			currentState = MonsterState.CHASE;
 		}
 	}
 
+	//Nếu có area khác chạm vào area Hurtbox
 	public void _on_Hurtbox_area_entered(Area2D area)
 	{
 		TakeDamageFromPlayerSword(area);	
-		knockBack = (this.GlobalPosition - area.GlobalPosition).Normalized() * MAX_SPEED;
+		knockBack = (this.GlobalPosition - area.GlobalPosition).Normalized() * MAX_SPEED;//knockback = đẩy lùi
 	}
 
 	private void TakeDamageFromPlayerSword(Area2D area)
 	{
-		
+		//Nếu
 		if (area is Hitbox swordArea)
 		{
-			GD.Print(area.Name);
 			stats.CurrentHealth -= swordArea.Damage;
 			if(stats.CurrentHealth > 0)
 				hurtBox.CreateHitEffect();
 		}	
 	}
+
+	//Nếu đang di chuyển về bên trái
+	//Lật sprite
 	private void FlipSprite()
 	{
 		sprite.FlipH = velocity.x < 0;
 	}
+
+	//Giảm dần knockback về 0
 	private void DampingKnockBack()
 	{
-
 		knockBack = knockBack.MoveToward(Vector2.Zero, FRICTION * GetPhysicsProcessDeltaTime());
 		knockBack = MoveAndSlide(knockBack);
 	}
 
 	
-
+	//Khi nhận được tín hiệu hết máu từ PlayerStats
+	//Tạo một DeathEffect
+	//Biến mất
 	private void _on_MonsterStats_OutOfHealth()
 	{
 		CombatEffect.CreateDeathEffect(this);

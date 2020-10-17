@@ -19,6 +19,10 @@ config/name="Noegnud"
 run/main_scene="res://Scenes/Stage1/Stage1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Scripts/Global.cs"
+
 [global]
 
 visible=false

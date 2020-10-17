@@ -4,15 +4,11 @@ using Godot;
 
 public class Stats: Node
 {
-	[Export]
-	protected int maxHealth;
     [Export]
-    private int damage;
+    private int maxHealth;//Mau toi da cua object
+	private int currentHealth;//Mau hien tai cua object
 
-    private int currentHealth;
-	
-
-    public override void _Ready()
+	public override void _Ready()
     {
         base._Ready();
 		currentHealth = maxHealth;
@@ -20,9 +16,9 @@ public class Stats: Node
 
 
 
-    #region Custom Signals
+	#region Custom Signals
 
-    [Signal]
+	[Signal]
 	public delegate void OutOfHealth();
 
 	#endregion
@@ -40,7 +36,16 @@ public class Stats: Node
 		}
 	}
 
-    protected int Damage { get => damage;}
+    public int MaxHealth { 
+		get => maxHealth;
+
+		set
+		{
+			maxHealth = value;
+			currentHealth = currentHealth < maxHealth ? currentHealth : maxHealth;
+			//De current health khong lon hon maxhealth
+		}
+	}
 
     #endregion
 }
