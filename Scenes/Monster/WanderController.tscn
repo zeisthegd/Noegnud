@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Monster/WanderController.cs" type="Script" id=1]
+
+[node name="WanderController" type="Node2D"]
+script = ExtResource( 1 )
+wanderTime = 2.0
+
+[node name="wanderDuration" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="wanderDuration" to="." method="_on_Timer_timeout"]

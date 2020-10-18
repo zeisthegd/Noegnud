@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 
 //Hurtbox dùng để nhận sát thương đến từ Hitbox

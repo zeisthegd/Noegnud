@@ -18,10 +18,6 @@ public class Bat : Monster
 		base._PhysicsProcess(delta);
 	}
 
-	protected override void StayIdle()
-	{
-		base.StayIdle();
-	}
 	protected override void GoWandering()
 	{
 		base.GoWandering();

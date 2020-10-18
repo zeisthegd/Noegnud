@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 
 public class Monster : KinematicBody2D
@@ -6,7 +6,6 @@ public class Monster : KinematicBody2D
 	//Các trạng thái khác nhau của Monster
 	enum MonsterState
 	{
-		IDLE,
 		WANDER,
 		CHASE
 	}
@@ -22,34 +21,36 @@ public class Monster : KinematicBody2D
 	protected MonsterStats stats;//Các thông số của Monster
 	protected PlayerDetectionZone playerDetectionZone;//Khu vực mà Monster có thể nhìn thấy Player
 	protected Hurtbox hurtBox;
+	protected WanderController wanderController;
 
 	const int MAX_SPEED = 50;//Tốc độ di chuyển tối đa của Monster 
 	const int FRICTION = 80;
 
-	MonsterState currentState = MonsterState.IDLE;//Khởi đầu MonsterState là tuần tra
+	MonsterState currentState = MonsterState.WANDER;//Khởi đầu MonsterState là tuần tra
 	
 	public override void _Ready()
 	{
+
 		sprite = (Sprite)GetNode("Sprite");
 		playerDetectionZone = (PlayerDetectionZone)GetNode("PlayerDetectionZone");
 		stats = (MonsterStats)GetNode("MonsterStats");
 		hurtBox = (Hurtbox)GetNode("Hurtbox");
 		animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
+		wanderController = (WanderController)GetNode("WanderController");
 	}
 
 	public override void _Process(float delta)
 	{
 		base._Process(delta);
 		DampingKnockBack();
-		AutoPilot();
+		
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
 		base._PhysicsProcess(delta);
-
-		if(knockBack == Vector2.Zero)//Khi không bị tấn công
-			velocity = MoveAndSlide(velocity);
+		AutoPilot();
+		
 	}
 
 	//StateMachine mini
@@ -58,10 +59,6 @@ public class Monster : KinematicBody2D
 		//Kiểm tra state hiện tại
 		switch(currentState)
 		{
-			case MonsterState.IDLE:
-				StayIdle();
-				break;
-
 			case MonsterState.CHASE:
 				ChasePlayer();
 				break;
@@ -77,21 +74,14 @@ public class Monster : KinematicBody2D
 		FlipSprite();
 		
 	}
-
-	protected virtual void StayIdle()
-	{
-		//MoveToward là hàm làm thay đổi giá trị của một vector cho tới khi nó bằng một vector khác, theo một giá trị cho trước
-		//Ở đây velocity sẽ đi dần về phía Vector2.Zero (0,0) với giá trị thay đổi theo thời gian là FRICTION * delta(1/60);
-		velocity = velocity.MoveToward(Vector2.Zero, FRICTION * GetPhysicsProcessDeltaTime());
-		SeekPlayer();
-	}
 	protected virtual void GoWandering()
 	{
-		//TODO
+		wanderController.UpdateWanderDirection();
+		velocity = MoveAndSlide(wanderController.WanderVelocity);
+		SeekPlayer();
 	}
 	protected virtual void ChasePlayer()
 	{
-		//
 		Player player = playerDetectionZone.Player;
 		if (player != null)
 		{
@@ -99,7 +89,9 @@ public class Monster : KinematicBody2D
 			velocity = velocity.MoveToward(direction * MAX_SPEED, MAX_SPEED * 2 * GetPhysicsProcessDeltaTime());
 		}
 		else
-			currentState = MonsterState.IDLE;
+			currentState = MonsterState.WANDER;
+		if (knockBack == Vector2.Zero)//Khi không bị tấn công
+			velocity = MoveAndSlide(velocity);
 	}
 
 	private void SeekPlayer()
@@ -120,7 +112,6 @@ public class Monster : KinematicBody2D
 
 	private void TakeDamageFromPlayerSword(Area2D area)
 	{
-		//Nếu
 		if (area is Hitbox swordArea)
 		{
 			stats.CurrentHealth -= swordArea.Damage;

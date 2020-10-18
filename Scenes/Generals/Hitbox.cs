@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 
 //Hitbox là area dùng để tấn công

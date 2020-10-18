@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 
 //HealthUI dùng để hiển thị HP của người chơi
