@@ -8,19 +8,23 @@
     ".NETFramework,Version=v4.7.2": []
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\Nguyen\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Godot\\Projects\\Noegnud\\Noegnud.csproj",
+      "projectUniqueName": "C:\\Users\\Nguyen\\Desktop\\Start Up\\Godot\\2D\\Noegnud\\Noegnud.csproj",
       "projectName": "Noegnud",
-      "projectPath": "D:\\Godot\\Projects\\Noegnud\\Noegnud.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Godot\\Projects\\Noegnud\\.mono\\temp\\obj\\",
+      "projectPath": "C:\\Users\\Nguyen\\Desktop\\Start Up\\Godot\\2D\\Noegnud\\Noegnud.csproj",
+      "packagesPath": "C:\\Users\\Nguyen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nguyen\\Desktop\\Start Up\\Godot\\2D\\Noegnud\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -42,9 +46,7 @@
       }
     },
     "frameworks": {
-      "net472": {
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
-      }
+      "net472": {}
     }
   }
 }

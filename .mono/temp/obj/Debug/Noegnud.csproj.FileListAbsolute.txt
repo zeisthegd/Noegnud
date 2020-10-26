@@ -1,11 +1,3 @@
-C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\bin\Debug\Noegnud.dll
-C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\bin\Debug\Noegnud.pdb
-C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.csprojAssemblyReference.cache
-C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.csproj.CoreCompileInputs.cache
-C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfoInputs.cache
-C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfo.cs
-C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.dll
-C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.pdb
 E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\bin\Debug\Noegnud.dll
 E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\bin\Debug\Noegnud.pdb
 E:\HocPhanDaiHoc\DoAnCoSoNganh\Noegnud\.mono\temp\obj\Debug\Noegnud.csprojAssemblyReference.cache
@@ -22,3 +14,11 @@ D:\Godot\Projects\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfo.cs
 D:\Godot\Projects\Noegnud\.mono\temp\obj\Debug\Noegnud.csproj.CoreCompileInputs.cache
 D:\Godot\Projects\Noegnud\.mono\temp\obj\Debug\Noegnud.dll
 D:\Godot\Projects\Noegnud\.mono\temp\obj\Debug\Noegnud.pdb
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\bin\Debug\Noegnud.dll
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\bin\Debug\Noegnud.pdb
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.csprojAssemblyReference.cache
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.csproj.CoreCompileInputs.cache
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfoInputs.cache
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.AssemblyInfo.cs
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.dll
+C:\Users\Nguyen\Desktop\Start Up\Godot\2D\Noegnud\.mono\temp\obj\Debug\Noegnud.pdb
