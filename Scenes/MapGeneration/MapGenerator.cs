@@ -19,15 +19,10 @@ public class MapGenerator : Node2D
 		SpawnTiles();
         for (int i = 0; i < size; i++)
         {
-            for (int j = 0; j < size; j++)
-            {
-				GD.Print(roomsMap[i, j]);
-
-			}
-			
+            GD.Print(roomsMap[i, 0] + " " + roomsMap[i, 1] + " " + roomsMap[i, 2] + " " + roomsMap[i, 3]);
         }
 
-		tileMap.UpdateBitmaskRegion();
+        tileMap.UpdateBitmaskRegion();
 	}
 
 
@@ -37,7 +32,7 @@ public class MapGenerator : Node2D
 		{
 			for (int j = 0; j < size; j++)
 			{
-				roomsMap[i, j] = new Room1();
+				roomsMap[i, j] = new Room1(false);
 			}
 		}
 	}
@@ -52,22 +47,20 @@ public class MapGenerator : Node2D
 	{
 		SpawnOuterWallAndFloor();
 		SpawnInnerRooms();
-
-		
 	}
 
-    private void SpawnInnerRooms()
-    {
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = 0; j < size; j++)
-            {
-				SpawnRoom(roomsMap[i,j],i,j);
-            }
-        }
-    }
+	private void SpawnInnerRooms()
+	{
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				SpawnRoom(roomsMap[i, j], j, i);
+			}
+		}
+	}
 
-    private void GenerateSolutionPath(int roomX, int roomY)
+	private void GenerateSolutionPath(int roomX, int roomY)
 	{
 		int nextRoomDirection = RandomDirection();
 		switch (nextRoomDirection)
@@ -112,14 +105,15 @@ public class MapGenerator : Node2D
 			SetExitRoom(row, col);
 		else
 		{
-			SetExactRoomType(roomsMap[row, col], 2);
+			SetExactRoomType(ref roomsMap[row, col], 2);
 			GenerateSolutionPath(row + 1, col);
 		}
 	}
 
 	private void SetExitRoom(int row, int col)
 	{
-		SetExactRoomType(roomsMap[row, col], -1);
+        GD.Print($"Exit: {row},{col}");
+		SetExactRoomType(ref roomsMap[row, col], -1);
 	}
 	private int RandomDirection()
 	{
@@ -144,27 +138,33 @@ public class MapGenerator : Node2D
 	private void SetRoomBasedOnAbove(int row, int col)
 	{
 		if (RoomAboveIsType2(row, col))
-			SetRandomRoomType(roomsMap[row, col], 2);
-		else SetRandomRoomType(roomsMap[row, col], 1);
+		{		
+			SetRandomRoomType(ref roomsMap[row, col], 2);		
+		}   
+		else SetRandomRoomType(ref roomsMap[row, col], 1);
 	}
 
-	private void SetExactRoomType(Room room, int type)
+	private void SetExactRoomType(ref Room room, int type)
 	{
-		switch (type)
+		if (!room.IsSet)
 		{
-			case 0:
-				room = new Room0();
-				break;
-			case 1:
-				room = new Room1();
-				break;
-			case 2:
-				room = new Room2();
-				break;
-			case 3:
-				room = new Room3();
-				break;
-		}
+			switch (type)
+			{
+				case 0:
+					room = new Room0(true);
+					break;
+				case 1:
+					room = new Room1(true);
+					break;
+				case 2:
+					room = new Room2(true);
+					break;
+				case 3:
+					room = new Room3(true);
+					break;
+			}
+        }
+
 	}
 
 	private void SpawnOuterWallAndFloor()
@@ -185,23 +185,30 @@ public class MapGenerator : Node2D
 
 	}
 
-	private void SpawnRoom(Room room,int roomX, int roomY)
+	private void SpawnRoom(Room room, int roomX, int roomY)
 	{
-		for (int i = 0; i < Room.Width; i++)
+		for (int i = 0; i < Room.Height; i++)
 		{
-			for (int j = 0; j < Room.Height; j++)
+			for (int j = 0; j < Room.Width; j++)
 			{
-				int cellPosX = i + Room.Width * roomX;
-				int cellPosY = j + Room.Height * roomY;
+				int cellPosX = j + Room.Width * roomX;
+				int cellPosY = i + Room.Height * roomY;
+                GD.Print($"{i},{j}");
 				if (room.Template[i, j] == 1)
-					tileMap.SetCell(cellPosX, cellPosY, tileMap.TileSet.FindTileByName("wall"));
+                {
+                    tileMap.SetCell(cellPosX, cellPosY, tileMap.TileSet.FindTileByName("wall"));
+                }
 			}
 		}
 	}
 
-	private void SetRandomRoomType(Room room, int minType)
+	private void SetRandomRoomType(ref Room room, int minType)
 	{
 		int randomType = RandomInt(minType, 4);
-		SetExactRoomType(room, randomType);
-	}
+        GD.Print("RANDOM: " + randomType);
+        SetExactRoomType(ref room, randomType);
+        GD.Print("TYPESET2: " + room.ToString());
+        GD.Print("ISSET2: " + room.IsSet);
+        GD.Print("-------------------------------");
+    }
 }

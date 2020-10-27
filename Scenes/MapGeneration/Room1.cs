@@ -3,9 +3,9 @@ using Godot;
 
 class Room1 : Room
 {
-    public Room1()
+    public Room1(bool isSet) : base(isSet)
     {
-        template = new int[,]{ 
+        template = new int[10,8]{ 
         {1,1,1,1,1,1,1,1},
         {1,1,1,1,1,1,1,1},
         {0,0,0,0,0,0,0,0},
