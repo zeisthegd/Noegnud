@@ -5,11 +5,12 @@ public class MapGenerator : Node2D
 {
 	TileMap tileMap;
 
-
 	const int spriteSize = 16;
 	const int size = 4;
 	Room[,] roomsMap = new Room[size, size];
 	Random randomizer = new Random();
+
+
 
 	public override void _Ready()
 	{
@@ -24,7 +25,6 @@ public class MapGenerator : Node2D
 
 		tileMap.UpdateBitmaskRegion();
 	}
-
 
 	private void InitRoom()
 	{
@@ -112,8 +112,9 @@ public class MapGenerator : Node2D
 
 	private void SetExitRoom(int row, int col)
 	{
-		SetExactRoomType(ref roomsMap[row, col], -1);
+		SetExactRoomType(ref roomsMap[row, col], RandomInt(0,4));
 	}
+
 	private int RandomDirection()
 	{
 		int randomDir = randomizer.Next(1, 6);
@@ -125,14 +126,7 @@ public class MapGenerator : Node2D
 		return randomInt;
 	}
 
-	private bool RoomAboveIsType2(int row, int col)
-	{
-		if (row == 0)
-			return false;
-		else if (roomsMap[row - 1, col] is Room2)
-			return true;
-		return false;
-	}
+	
 
 	private void SetRoomBasedOnAbove(int row, int col)
 	{
@@ -143,6 +137,22 @@ public class MapGenerator : Node2D
 		else SetRandomRoomType(ref roomsMap[row, col], 1);
 	}
 
+	private bool RoomAboveIsType2(int row, int col)
+	{
+		if (row == 0)
+			return false;
+		else if (roomsMap[row - 1, col] is Room2)
+			return true;
+		return false;
+	}
+
+	
+
+	private void SetRandomRoomType(ref Room room, int minType)
+	{
+		int randomType = RandomInt(minType, 4);
+		SetExactRoomType(ref room, randomType);
+	}
 	private void SetExactRoomType(ref Room room, int type)
 	{
 		if (!room.IsSet)
@@ -166,6 +176,7 @@ public class MapGenerator : Node2D
 
 	}
 
+	//Spawning Objects
 	private void SpawnOuterWallAndFloor()
 	{
 		int mapWidth = size * Room.Width;
@@ -176,9 +187,9 @@ public class MapGenerator : Node2D
 			{
 				if (i == -1 || j == -1 || i == mapWidth || j == mapHeight)
 				{
-					tileMap.SetCell(i, j, tileMap.TileSet.FindTileByName("wall"));
+					SpawnWall(i, j);
 				}
-				else tileMap.SetCell(i, j, tileMap.TileSet.FindTileByName("floor"));
+				else SpawnFloor(i, j);
 			}
 		}
 
@@ -192,17 +203,40 @@ public class MapGenerator : Node2D
 			{
 				int cellPosX = j + Room.Width * roomX;
 				int cellPosY = i + Room.Height * roomY;
-				if (room.Template[i, j] == 1)
-				{
-					tileMap.SetCell(cellPosX, cellPosY, tileMap.TileSet.FindTileByName("wall"));
-				}
+
+				SpawnWall(cellPosX, cellPosY, room.Template[i, j]);
 			}
 		}
 	}
-
-	private void SetRandomRoomType(ref Room room, int minType)
-	{
-		int randomType = RandomInt(minType, 4);
-		SetExactRoomType(ref room, randomType);
+	
+	private void SpawnWall(int i, int j)
+	{		
+		tileMap.SetCell(i, j, tileMap.TileSet.FindTileByName("wall"));
 	}
+
+	private void SpawnWall(int i, int j, int type)
+	{
+		if (type == 2)
+		{
+			if (ChanceCounter.Hit(TileSpawnChances.WallChance))
+			{
+				tileMap.SetCell(i, j, tileMap.TileSet.FindTileByName("wall"));
+			}
+			else SpawnFloor(i,j);
+		}			
+		else if(type == 1)
+			SpawnWall(i, j);
+	}
+
+	private void SpawnFloor(int i, int j)
+	{
+		tileMap.SetCell(i, j, tileMap.TileSet.FindTileByName("floor"));
+	}
+
+	private void SpawnExitDoor()
+	{
+
+	}
+
+	
 }

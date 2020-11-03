@@ -63,7 +63,7 @@ public class HealthUI : Control
 	private void GetPlayerStats()
 	{
 		string playerName = "Player", playerStatsName = "PlayerStats";		
-		this.playerStats = (PlayerStats)Global.CurrentScene.GetNode(playerName).GetNode(playerStatsName);
+		this.playerStats = (PlayerStats)Global.CurrentScene.GetNode("YSort").GetNode(playerName).GetNode(playerStatsName);
 	}
 
 	public int MaxHearts { get => maxHearts; set => maxHearts = Mathf.Max(value, 1); }
