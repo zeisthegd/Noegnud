@@ -10,7 +10,7 @@
 [node name="MapGenerator" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 332.811, 225.634 )
+position = Vector2( 403.866, 263.094 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
@@ -20,9 +20,9 @@ remote_path = NodePath("../../Camera2D")
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 3 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 332.811, 225.634 )
+position = Vector2( 403.866, 263.094 )
 current = true
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 0.5, 0.5 )
 smoothing_enabled = true
 smoothing_speed = 2.0
 

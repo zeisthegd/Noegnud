@@ -20,7 +20,7 @@ public class HealthUI : Control
 	{
 		GetPlayerStats();
 		InitializeChildNodes();
-
+		maxHearts = playerStats.MaxHealth;
 		SetHearts(hearts);
 		SetMaxHearts(maxHearts);
 	}
@@ -28,10 +28,8 @@ public class HealthUI : Control
 	
 	public override void _Process(float delta)
 	{
-		hearts = playerStats.CurrentHealth;
-		maxHearts = playerStats.MaxHealth;
+		hearts = playerStats.CurrentHealth;	
 		SetHearts(hearts);
-		SetMaxHearts(maxHearts);
 	}
 	
 	private void InitializeChildNodes()
@@ -42,16 +40,14 @@ public class HealthUI : Control
 
 	//Hien thi cac Hearts ra man hinh
 	private void SetHearts(int value)
-	{
-		
+	{	
 		hearts = Mathf.Clamp(value,0,maxHearts);
 		if(heartUIFull != null)
 		{
 			heartUIFull.RectSize = new Vector2(hearts * spriteSize, heartUIFull.RectSize.y);
 		}
 	}
-
-	//
+	 
 	private void SetMaxHearts(int value)
 	{
 		maxHearts = Mathf.Max(value, 1);

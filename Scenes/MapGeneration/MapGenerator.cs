@@ -17,12 +17,12 @@ public class MapGenerator : Node2D
 		InitRoom();
 		RandomGenRoom();
 		SpawnTiles();
-        for (int i = 0; i < size; i++)
-        {
-            GD.Print(roomsMap[i, 0] + " " + roomsMap[i, 1] + " " + roomsMap[i, 2] + " " + roomsMap[i, 3]);
-        }
+		for (int i = 0; i < size; i++)
+		{
+			GD.Print(roomsMap[i, 0] + " " + roomsMap[i, 1] + " " + roomsMap[i, 2] + " " + roomsMap[i, 3]);
+		}
 
-        tileMap.UpdateBitmaskRegion();
+		tileMap.UpdateBitmaskRegion();
 	}
 
 
@@ -112,7 +112,6 @@ public class MapGenerator : Node2D
 
 	private void SetExitRoom(int row, int col)
 	{
-        GD.Print($"Exit: {row},{col}");
 		SetExactRoomType(ref roomsMap[row, col], -1);
 	}
 	private int RandomDirection()
@@ -163,7 +162,7 @@ public class MapGenerator : Node2D
 					room = new Room3(true);
 					break;
 			}
-        }
+		}
 
 	}
 
@@ -193,11 +192,10 @@ public class MapGenerator : Node2D
 			{
 				int cellPosX = j + Room.Width * roomX;
 				int cellPosY = i + Room.Height * roomY;
-                GD.Print($"{i},{j}");
 				if (room.Template[i, j] == 1)
-                {
-                    tileMap.SetCell(cellPosX, cellPosY, tileMap.TileSet.FindTileByName("wall"));
-                }
+				{
+					tileMap.SetCell(cellPosX, cellPosY, tileMap.TileSet.FindTileByName("wall"));
+				}
 			}
 		}
 	}
@@ -205,10 +203,6 @@ public class MapGenerator : Node2D
 	private void SetRandomRoomType(ref Room room, int minType)
 	{
 		int randomType = RandomInt(minType, 4);
-        GD.Print("RANDOM: " + randomType);
-        SetExactRoomType(ref room, randomType);
-        GD.Print("TYPESET2: " + room.ToString());
-        GD.Print("ISSET2: " + room.IsSet);
-        GD.Print("-------------------------------");
-    }
+		SetExactRoomType(ref room, randomType);
+	}
 }

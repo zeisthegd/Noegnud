@@ -45,8 +45,9 @@ public class Hurtbox : Area2D
 	{
 		//Bắt đầu cho nhân vật bị tấn công một khoảng thời gian không thể bị tấn công (duration)
 		SetInvincible(true);
-		//Bắt đầu bộ đếm ngược thời gian bắt đầu bằng duration giảm dần về 0 theo thời gian thực
-		invincibleTimer.Start(duration);
+		//Bắt đầu bộ đếm ngược thời gian bắt đầu bằng duration giảm dần về 0 theo thời gian thực	
+		if (invincibleTimer.TimeLeft <= 0)
+			invincibleTimer.Start(duration);
 	}
 
 	public void CreateHitEffect()
@@ -74,14 +75,15 @@ public class Hurtbox : Area2D
 
 		//Khi tín hiệu InvincibilityStarted được phát ra
 		//Monitorable sẽ được chuyển thành false
-		//Để tránh nhân vật bị tấn công bị tấn công thêm lần nữa sau một khoảng thời gian(duration) nhất định
-		Monitorable = false;
+		//Để tránh nhân vật bị tấn công bị tấn công thêm lần nữa 
+		//sau một khoảng thời gian(duration) nhất định
+		SetDeferred("Monitorable", false);
 	}
 
 	//Phương thức này nhận tín hiệu InvincibilityEnded
 	private void _on_Hurtbox_InvincibilityEnded()
 	{
-		Monitorable = true;
+		SetDeferred("Monitorable", true);
 	}
 
 	public bool Invincible { get => invincible; set => invincible = value; }

@@ -92,7 +92,7 @@ public class Player : KinematicBody2D
 			if (playerStats.CurrentHealth >= 0)
 			{
 				hurtBox.CreateHitEffect();//Sau đó tạo một effect hit
-				hurtBox.StartInvincibility(0.5F);//Sau đó làm cho player không thể bị tấn công trong 0.5 giây
+				hurtBox.StartInvincibility(3);//Sau đó làm cho player không thể bị tấn công trong 0.5 giây
 
 			}
 		}
