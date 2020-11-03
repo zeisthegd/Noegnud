@@ -1,10 +1,8 @@
 using Godot;
 using System;
 
-public class MapGenerator : Node2D
+public class MapGenerator : TileMap
 {
-	TileMap tileMap;
-
 	const int spriteSize = 16;
 	const int size = 4;
 	Room[,] roomsMap = new Room[size, size];
@@ -14,7 +12,6 @@ public class MapGenerator : Node2D
 
 	public override void _Ready()
 	{
-		tileMap = (TileMap)GetNode("TileMap");
 		InitRoom();
 		RandomGenRoom();
 		SpawnTiles();
@@ -22,8 +19,8 @@ public class MapGenerator : Node2D
 		{
 			GD.Print(roomsMap[i, 0] + " " + roomsMap[i, 1] + " " + roomsMap[i, 2] + " " + roomsMap[i, 3]);
 		}
-
-		tileMap.UpdateBitmaskRegion();
+		
+		UpdateBitmaskRegion();
 	}
 
 	private void InitRoom()
@@ -41,15 +38,17 @@ public class MapGenerator : Node2D
 	{
 		int startingRoomCol = RandomInt(0, 4);
 		GenerateSolutionPath(0, startingRoomCol);
+		SetPlayerStartingPosition(0,startingRoomCol);
+		SetLeftoverRooms();
 	}
 
 	private void SpawnTiles()
 	{
 		SpawnOuterWallAndFloor();
-		SpawnInnerRooms();
+		SpawnSolutionPathRooms();
 	}
 
-	private void SpawnInnerRooms()
+	private void SpawnSolutionPathRooms()
 	{
 		for (int i = 0; i < size; i++)
 		{
@@ -211,7 +210,7 @@ public class MapGenerator : Node2D
 	
 	private void SpawnWall(int i, int j)
 	{		
-		tileMap.SetCell(i, j, tileMap.TileSet.FindTileByName("wall"));
+		SetCell(i, j, TileSet.FindTileByName("wall"));
 	}
 
 	private void SpawnWall(int i, int j, int type)
@@ -220,7 +219,7 @@ public class MapGenerator : Node2D
 		{
 			if (ChanceCounter.Hit(TileSpawnChances.WallChance))
 			{
-				tileMap.SetCell(i, j, tileMap.TileSet.FindTileByName("wall"));
+				SetCell(i, j, TileSet.FindTileByName("wall"));
 			}
 			else SpawnFloor(i,j);
 		}			
@@ -230,7 +229,7 @@ public class MapGenerator : Node2D
 
 	private void SpawnFloor(int i, int j)
 	{
-		tileMap.SetCell(i, j, tileMap.TileSet.FindTileByName("floor"));
+		SetCell(i, j, TileSet.FindTileByName("floor"));
 	}
 
 	private void SpawnExitDoor()
@@ -238,5 +237,37 @@ public class MapGenerator : Node2D
 
 	}
 
+	private void SetLeftoverRooms()
+	{
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				if (roomsMap[i, j].IsSet == false)
+					SetRandomRoomType(ref roomsMap[i, j], 0);
+			}
+		}
+	}
+
+	private void SetPlayerStartingPosition(int startRoomX,int startRoomY)
+	{
+		Player player = Global.GetPlayer();
+		Vector2 startingPosition = new Vector2();
+		for (int i = 0; i < Room.Height; i++)
+		{
+			for (int j = 0; j < Room.Width; j++)
+			{
+				if(roomsMap[startRoomX,startRoomY].Template[i,j] == 0)
+				{
+					int cellPosX = j + Room.Width * startRoomX;
+					int cellPosY = i + Room.Height * startRoomY;
+					startingPosition = new Vector2(cellPosX, cellPosY);
+
+				}
+			}
+		}
+
+		player.GlobalPosition = startingPosition;
+	}
 	
 }

@@ -4,8 +4,8 @@ using System;
 //Class này được sử dụng để chuyển đổi các Scene, thay đổi màn chơi
 public class Global : Node
 {
-    //Scene hiện tại, VD:Stage1
-    public static Node CurrentScene { get; set; }
+    static string playerName = "Player";
+    
     public override void _Ready()
     {
         Viewport root = GetTree().Root;
@@ -30,6 +30,14 @@ public class Global : Node
         GetTree().Root.AddChild(CurrentScene);
         GetTree().CurrentScene = CurrentScene;
     }
+
+    public static Player GetPlayer()
+    {
+        return (Player)CurrentScene.GetNode("MainSort").GetNode(playerName);
+
+    }
+
+    public static Node CurrentScene { get; set; }//Scene hiện tại, VD:Stage1
 
 
 }
