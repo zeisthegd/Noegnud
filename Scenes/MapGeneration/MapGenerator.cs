@@ -34,9 +34,8 @@ public class MapGenerator : TileMap
 		UpdateBitmaskRegion();
 
 
-        
-        SpawnMonsterInEveryRoom();  
-		GD.Print(exitRoom);
+		
+		SpawnMonsterInEveryRoom(); 
 	}
 
 	private void GetChildNodes()
@@ -61,7 +60,6 @@ public class MapGenerator : TileMap
 		int startingRoomCol = RandomInt(0, 4);
 		GenerateSolutionPath(startingRoomCol, 0);
 		SetPlayerStartingPosition(startingRoomCol);
-		GD.Print("Start: " + startingRoomCol);
 		SetLeftoverRooms();
 	}
 
@@ -247,7 +245,6 @@ public class MapGenerator : TileMap
 	private void SpawnStairUp(int i, int j)
 	{
 		SetCellv(new Vector2(i, j), TileSet.FindTileByName("stairUp"));
-		GD.Print("StairUp");
 	}
 	private void SpawnStairDown(int i, int j)
 	{
@@ -301,7 +298,6 @@ public class MapGenerator : TileMap
 					{
 						int cellPosX = j + Room.Width * exitRoomX;
 						int cellPosY = i + Room.Height * exitRoomY;
-						GD.Print(cellPosX, cellPosY);
 						SpawnStairDown(cellPosX, cellPosY);
 						return;
 					}
@@ -315,34 +311,34 @@ public class MapGenerator : TileMap
 	}
 
 
-    //Spawn Monsters
-    private void SpawnMonsterInEveryRoom()
-    {
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = 0; j < size; j++)
-            {
-                SpawnMonster(monsters, i, j);
-            }
-        }
-    }
+	//Spawn Monsters
+	private void SpawnMonsterInEveryRoom()
+	{
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				SpawnMonster(monsters, i, j);
+			}
+		}
+	}
 
-    private async void SpawnMonster(PackedScene monster, int roomX, int roomY)
-    {
-        var timer = new Timer();
-        AddChild(timer);
-        timer.WaitTime = 1;
-        timer.Start();
-        await ToSignal(timer, "timeout");
-        for (int i = 0; i < 3; i++)
-        {
-            int randX = (RandomInt(2, 9) + Room.Width * roomX) * 16 + 8;
-            int randY = (RandomInt(2, 7) + Room.Height * roomY) * 32 + 16;
-            Global.SpawnMonster(monster, new Vector2(randX, randY));
+	private async void SpawnMonster(PackedScene monster, int roomX, int roomY)
+	{
+		var timer = new Timer();
+		AddChild(timer);
+		timer.WaitTime = 0.75F;
+		timer.Start();
+		await ToSignal(timer, "timeout");
+		for (int i = 0; i < 3; i++)
+		{
+			int randX = (RandomInt(2, 9) + Room.Width * roomX) * 16 + 8;
+			int randY = (RandomInt(2, 7) + Room.Height * roomY) * 32 + 16;
+			Global.SpawnMonster(monster, new Vector2(randX, randY));
 
-            
-        }
+			
+		}
 
-    }
+	}
 
 }

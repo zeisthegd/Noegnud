@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Art/Background/Ranking.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/GUI/OverallUI/RankingScene.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Art/UI/Buttons6.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/UI/Buttons5.png" type="Texture" id=4]
+
+
+
+
+
+[node name="Ranking" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+z_index = -100
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Back" type="TextureButton" parent="."]
+margin_left = 320.0
+margin_top = 384.0
+margin_right = 368.0
+margin_bottom = 400.0
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RankFrames" type="VBoxContainer" parent="."]
+margin_left = 64.0
+margin_top = 93.0
+margin_right = 320.0
+margin_bottom = 349.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="RankFrames"]
+points = PoolVector2Array( 0, 244, 256, 244 )
+width = 1.0
+default_color = Color( 0.968627, 0.968627, 0.968627, 1 )
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

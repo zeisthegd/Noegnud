@@ -5,7 +5,7 @@ using System;
 public class Global : Node
 {
     static string playerName = "Player";
-    
+
     public override void _Ready()
     {
         Viewport root = GetTree().Root;
@@ -39,6 +39,11 @@ public class Global : Node
         GD.Print("Spawn");
     }
 
+    public static Control GetMainUI()
+    {
+        return (Control)CurrentScene.GetNode("CanvasLayer").GetNode("GUI");
+    }
+
     public static Player GetPlayer()
     {
         return (Player)CurrentScene.GetNode("MainSort").GetNode(playerName);
@@ -46,6 +51,11 @@ public class Global : Node
     }
 
     public static Node CurrentScene { get; set; }//Scene hiện tại, VD:Stage1
+    public static String StartMenu { get { return "res://Scenes/GUI/OverallUI/StartMenu.tscn"; } }
+    public static String Ranking { get { return "res://Scenes/GUI/OverallUI/Ranking.tscn"; } }
+    public static String Game { get { return "res://Scenes/Stage1/Stage1.tscn"; } }
+    public static String Option { get { return "res://Scenes/GUI/OverallUI/Option.tscn"; } }
+    public static String LoginScreen { get { return "res://Scenes/GUI/OverallUI/LoginScreen.tscn"; } }
 
 
 }
