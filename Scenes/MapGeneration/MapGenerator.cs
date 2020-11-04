@@ -3,15 +3,25 @@ using System;
 
 public class MapGenerator : TileMap
 {
+	TileMap floorMap;
+
+	[Export]
+	PackedScene monsters;
+
 	const int spriteSize = 16;
 	const int size = 4;
 	Room[,] roomsMap = new Room[size, size];
 	Random randomizer = new Random();
+	Player player;
 
+	Vector2 entranceStair;
+	Vector2 exitRoom;
 
 
 	public override void _Ready()
 	{
+		GetChildNodes();
+
 		InitRoom();
 		RandomGenRoom();
 		SpawnTiles();
@@ -19,8 +29,20 @@ public class MapGenerator : TileMap
 		{
 			GD.Print(roomsMap[i, 0] + " " + roomsMap[i, 1] + " " + roomsMap[i, 2] + " " + roomsMap[i, 3]);
 		}
-		
+
+		SpawnExitAndEntranceStair((int)exitRoom.x, (int)exitRoom.y);
 		UpdateBitmaskRegion();
+
+
+        
+        SpawnMonsterInEveryRoom();  
+		GD.Print(exitRoom);
+	}
+
+	private void GetChildNodes()
+	{
+		floorMap = (TileMap)GetNode("FloorMap");
+		player = Global.GetPlayer();
 	}
 
 	private void InitRoom()
@@ -37,8 +59,9 @@ public class MapGenerator : TileMap
 	private void RandomGenRoom()
 	{
 		int startingRoomCol = RandomInt(0, 4);
-		GenerateSolutionPath(0, startingRoomCol);
-		SetPlayerStartingPosition(0,startingRoomCol);
+		GenerateSolutionPath(startingRoomCol, 0);
+		SetPlayerStartingPosition(startingRoomCol);
+		GD.Print("Start: " + startingRoomCol);
 		SetLeftoverRooms();
 	}
 
@@ -46,8 +69,8 @@ public class MapGenerator : TileMap
 	{
 		SpawnOuterWallAndFloor();
 		SpawnSolutionPathRooms();
-	}
 
+	}
 	private void SpawnSolutionPathRooms()
 	{
 		for (int i = 0; i < size; i++)
@@ -77,7 +100,6 @@ public class MapGenerator : TileMap
 				break;
 		}
 	}
-
 	private void NextLeftRoom(int row, int col)
 	{
 		if (col - 1 <= 0)
@@ -107,11 +129,13 @@ public class MapGenerator : TileMap
 			SetExactRoomType(ref roomsMap[row, col], 2);
 			GenerateSolutionPath(row + 1, col);
 		}
-	}
 
+	}
 	private void SetExitRoom(int row, int col)
 	{
-		SetExactRoomType(ref roomsMap[row, col], RandomInt(0,4));
+
+		SetExactRoomType(ref roomsMap[row, col], RandomInt(0, 4));
+		exitRoom = new Vector2(col, row);
 	}
 
 	private int RandomDirection()
@@ -124,18 +148,14 @@ public class MapGenerator : TileMap
 		int randomInt = randomizer.Next(min, max);
 		return randomInt;
 	}
-
-	
-
 	private void SetRoomBasedOnAbove(int row, int col)
 	{
 		if (RoomAboveIsType2(row, col))
-		{		
-			SetRandomRoomType(ref roomsMap[row, col], 2);		
-		}   
+		{
+			SetExactRoomType(ref roomsMap[row, col], 2);
+		}
 		else SetRandomRoomType(ref roomsMap[row, col], 1);
 	}
-
 	private bool RoomAboveIsType2(int row, int col)
 	{
 		if (row == 0)
@@ -144,9 +164,6 @@ public class MapGenerator : TileMap
 			return true;
 		return false;
 	}
-
-	
-
 	private void SetRandomRoomType(ref Room room, int minType)
 	{
 		int randomType = RandomInt(minType, 4);
@@ -193,7 +210,6 @@ public class MapGenerator : TileMap
 		}
 
 	}
-
 	private void SpawnRoom(Room room, int roomX, int roomY)
 	{
 		for (int i = 0; i < Room.Height; i++)
@@ -207,12 +223,10 @@ public class MapGenerator : TileMap
 			}
 		}
 	}
-	
 	private void SpawnWall(int i, int j)
-	{		
+	{
 		SetCell(i, j, TileSet.FindTileByName("wall"));
 	}
-
 	private void SpawnWall(int i, int j, int type)
 	{
 		if (type == 2)
@@ -221,22 +235,28 @@ public class MapGenerator : TileMap
 			{
 				SetCell(i, j, TileSet.FindTileByName("wall"));
 			}
-			else SpawnFloor(i,j);
-		}			
-		else if(type == 1)
+			else SpawnFloor(i, j);
+		}
+		else if (type == 1)
 			SpawnWall(i, j);
 	}
-
 	private void SpawnFloor(int i, int j)
 	{
-		SetCell(i, j, TileSet.FindTileByName("floor"));
+		floorMap.SetCell(i, j, TileSet.FindTileByName("floor"));
 	}
-
+	private void SpawnStairUp(int i, int j)
+	{
+		SetCellv(new Vector2(i, j), TileSet.FindTileByName("stairUp"));
+		GD.Print("StairUp");
+	}
+	private void SpawnStairDown(int i, int j)
+	{
+		SetCell(i, j, TileSet.FindTileByName("stairDown"));
+	}
 	private void SpawnExitDoor()
 	{
 
 	}
-
 	private void SetLeftoverRooms()
 	{
 		for (int i = 0; i < size; i++)
@@ -248,26 +268,81 @@ public class MapGenerator : TileMap
 			}
 		}
 	}
-
-	private void SetPlayerStartingPosition(int startRoomX,int startRoomY)
+	private void SetPlayerStartingPosition(int startRoomX)
 	{
-		Player player = Global.GetPlayer();
-		Vector2 startingPosition = new Vector2();
-		for (int i = 0; i < Room.Height; i++)
-		{
-			for (int j = 0; j < Room.Width; j++)
-			{
-				if(roomsMap[startRoomX,startRoomY].Template[i,j] == 0)
-				{
-					int cellPosX = j + Room.Width * startRoomX;
-					int cellPosY = i + Room.Height * startRoomY;
-					startingPosition = new Vector2(cellPosX, cellPosY);
 
+		Vector2 startingPosition = new Vector2();
+		for (int i = 0; i < Room.Width; i++)
+		{
+			for (int j = 0; j < Room.Height; j++)
+			{
+				if (roomsMap[startRoomX, 0].Template[i, j] == 0)
+				{
+					int cellPosX = (j + Room.Width * startRoomX) * 16 + 8;
+					int cellPosY = i * 32 + 16;
+					startingPosition = new Vector2(cellPosX, cellPosY);
+					entranceStair = new Vector2(i + Room.Width * startRoomX, i);
+					player.GlobalPosition = startingPosition;
+					return;
 				}
 			}
 		}
-
-		player.GlobalPosition = startingPosition;
 	}
-	
+	private void SpawnExitAndEntranceStair(int exitRoomX, int exitRoomY)
+	{
+		SpawnStairUp((int)entranceStair.x, (int)entranceStair.y);
+		try
+		{
+			for (int i = 0; i < Room.Height; i++)
+			{
+				for (int j = 0; j < Room.Width; j++)
+				{
+					if (roomsMap[exitRoomX, exitRoomY].Template[i, j] == 0 && roomsMap[exitRoomX, exitRoomY].Template[i + 1, j] == 0)
+					{
+						int cellPosX = j + Room.Width * exitRoomX;
+						int cellPosY = i + Room.Height * exitRoomY;
+						GD.Print(cellPosX, cellPosY);
+						SpawnStairDown(cellPosX, cellPosY);
+						return;
+					}
+				}
+			}
+		}
+		catch
+		{
+
+		}
+	}
+
+
+    //Spawn Monsters
+    private void SpawnMonsterInEveryRoom()
+    {
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                SpawnMonster(monsters, i, j);
+            }
+        }
+    }
+
+    private async void SpawnMonster(PackedScene monster, int roomX, int roomY)
+    {
+        var timer = new Timer();
+        AddChild(timer);
+        timer.WaitTime = 1;
+        timer.Start();
+        await ToSignal(timer, "timeout");
+        for (int i = 0; i < 3; i++)
+        {
+            int randX = (RandomInt(2, 9) + Room.Width * roomX) * 16 + 8;
+            int randY = (RandomInt(2, 7) + Room.Height * roomY) * 32 + 16;
+            Global.SpawnMonster(monster, new Vector2(randX, randY));
+
+            
+        }
+
+    }
+
 }

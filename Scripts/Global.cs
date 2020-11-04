@@ -31,6 +31,14 @@ public class Global : Node
         GetTree().CurrentScene = CurrentScene;
     }
 
+    public static void SpawnMonster(PackedScene scene, Vector2 position)
+    {
+        Monster newMonster = (Monster)scene.Instance();
+        Global.CurrentScene.AddChild(newMonster);
+        newMonster.GlobalPosition = position;
+        GD.Print("Spawn");
+    }
+
     public static Player GetPlayer()
     {
         return (Player)CurrentScene.GetNode("MainSort").GetNode(playerName);
