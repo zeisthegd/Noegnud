@@ -29,6 +29,7 @@ tracks/0/keys = {
 
 [node name="Bat" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+point = 1
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( 0.011465, -0.00196058 )
@@ -39,7 +40,6 @@ shape = SubResource( 1 )
 position = Vector2( -0.581181, -2.91447 )
 texture = ExtResource( 2 )
 hframes = 5
-frame = 1
 
 [node name="AnimationPlayer" parent="." index="2"]
 autoplay = "Flap"

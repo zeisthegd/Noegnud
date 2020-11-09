@@ -3,6 +3,7 @@ using System;
 
 public class Monster : KinematicBody2D
 {
+	[Export]
 	protected int point;
 	enum MonsterState
 	{
@@ -145,9 +146,9 @@ public class Monster : KinematicBody2D
 	}
 
 	private void AddScoreToPlayer()
-    {
+	{
 
-    }
+	}
 
 	
 }

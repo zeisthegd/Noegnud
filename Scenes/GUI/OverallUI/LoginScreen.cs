@@ -18,9 +18,9 @@ public class LoginScreen : Control
 		//AutoLoad.PlayMusic(this, loginScreen);
 	}
 
-    
+	
 
-    private void _on_LoginButton_pressed()
+	private void _on_LoginButton_pressed()
 	{
 		loginWindow.Show();
 		loginWindow.Username.GrabFocus();
