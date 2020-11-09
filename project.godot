@@ -24,6 +24,8 @@ config/icon="res://icon.png"
 Global="*res://Scripts/Global.cs"
 AutoLoad="*res://Scripts/AutoLoad.cs"
 FloatingTextSpawner="*res://Scenes/GUI/OverallUI/FloatingTextSpawner.cs"
+MainMusicPlayer="*res://Scenes/Music/MainMusicPlayer.tscn"
+Uisfx="*res://Scenes/Music/UISFX.tscn"
 
 [display]
 

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Music/OverallMusic/Forest.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Scenes/Music/MainMusicPlayer.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Music/OverallMusic/Menu.ogg" type="AudioStream" id=3]
+
+[node name="MainMusicPlayer" type="AudioStreamPlayer"]
+autoplay = true
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+mainMenuMusic = ExtResource( 3 )
+dungeon1Music = ExtResource( 1 )

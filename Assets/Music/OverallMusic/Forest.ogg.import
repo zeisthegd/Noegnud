@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/Forest.ogg-ee4827d8734e74a2e03f160c70628a5b.oggstr"
+path="res://.import/Forest.ogg-4c9df7321dfedb8a78df7110e5452adb.oggstr"
 
 [deps]
 
-source_file="res://Assets/Music/Forest.ogg"
-dest_files=[ "res://.import/Forest.ogg-ee4827d8734e74a2e03f160c70628a5b.oggstr" ]
+source_file="res://Assets/Music/OverallMusic/Forest.ogg"
+dest_files=[ "res://.import/Forest.ogg-4c9df7321dfedb8a78df7110e5452adb.oggstr" ]
 
 [params]
 
