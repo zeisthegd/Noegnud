@@ -312,7 +312,6 @@ public class MapGenerator : TileMap
 		}
 	}
 
-
 	//Spawn Monsters
 	private void SpawnMonsterInEveryRoom()
 	{
