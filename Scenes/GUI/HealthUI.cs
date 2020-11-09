@@ -14,8 +14,6 @@ public class HealthUI : Control
 	TextureRect heartUIFull;
 	TextureRect heartUIEmpty;
 
-	
-
 	public override void _Ready()
 	{
 		GetPlayerStats();

@@ -8,12 +8,14 @@ public class StartMenu : Control
 	public override void _Ready()
 	{
 		//AutoLoad.PlayMusic(this,loginScreen);
+		GetTree().SetScreenStretch(SceneTree.StretchMode.Mode2d, SceneTree.StretchAspect.Keep, new Vector2(384, 416), 1);
 	}
 
 
 	private void _on_Start_pressed()
 	{
 		AutoLoad.Global.GotoScene(Global.Game);
+		GetTree().SetScreenStretch(SceneTree.StretchMode.Mode2d, SceneTree.StretchAspect.KeepHeight, new Vector2(384, 416), 1);
 	}
 
 	

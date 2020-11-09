@@ -36,7 +36,6 @@ public class Global : Node
         Monster newMonster = (Monster)scene.Instance();
         Global.CurrentScene.AddChild(newMonster);
         newMonster.GlobalPosition = position;
-        GD.Print("Spawn");
     }
 
     public static Control GetMainUI()

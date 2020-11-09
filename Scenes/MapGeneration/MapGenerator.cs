@@ -6,7 +6,13 @@ public class MapGenerator : TileMap
 	TileMap floorMap;
 
 	[Export]
-	PackedScene monsters;
+	PackedScene monster1;
+	[Export]
+	PackedScene monster2;
+	[Export]
+	PackedScene monster3;
+	[Export]
+	PackedScene boss;
 
 	const int spriteSize = 16;
 	const int size = 4;
@@ -31,10 +37,7 @@ public class MapGenerator : TileMap
 		}
 
 		SpawnExitAndEntranceStair((int)exitRoom.x, (int)exitRoom.y);
-		UpdateBitmaskRegion();
-
-
-		
+		UpdateBitmaskRegion();	
 		SpawnMonsterInEveryRoom(); 
 	}
 
@@ -131,7 +134,6 @@ public class MapGenerator : TileMap
 	}
 	private void SetExitRoom(int row, int col)
 	{
-
 		SetExactRoomType(ref roomsMap[row, col], RandomInt(0, 4));
 		exitRoom = new Vector2(col, row);
 	}
@@ -318,7 +320,7 @@ public class MapGenerator : TileMap
 		{
 			for (int j = 0; j < size; j++)
 			{
-				SpawnMonster(monsters, i, j);
+				SpawnMonster(monster1, i, j);
 			}
 		}
 	}
@@ -327,7 +329,7 @@ public class MapGenerator : TileMap
 	{
 		var timer = new Timer();
 		AddChild(timer);
-		timer.WaitTime = 0.75F;
+		timer.WaitTime = 0.05F;
 		timer.Start();
 		await ToSignal(timer, "timeout");
 		for (int i = 0; i < 3; i++)

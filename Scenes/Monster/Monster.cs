@@ -3,7 +3,7 @@ using System;
 
 public class Monster : KinematicBody2D
 {
-	//Các trạng thái khác nhau của Monster
+	protected int point;
 	enum MonsterState
 	{
 		WANDER,
@@ -143,6 +143,11 @@ public class Monster : KinematicBody2D
 		CombatEffect.CreateDeathEffect(this);
 		QueueFree();
 	}
+
+	private void AddScoreToPlayer()
+    {
+
+    }
 
 	
 }

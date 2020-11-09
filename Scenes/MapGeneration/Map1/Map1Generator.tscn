@@ -9,7 +9,7 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 32 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 cell_y_sort = true
-monsters = ExtResource( 2 )
+monster1 = ExtResource( 2 )
 
 [node name="FloorMap" parent="." index="0"]
 tile_set = ExtResource( 3 )

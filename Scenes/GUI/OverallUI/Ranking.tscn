@@ -1,16 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Art/Background/Ranking.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/GUI/OverallUI/RankingScene.cs" type="Script" id=2]
 [ext_resource path="res://Assets/Art/UI/Buttons6.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Art/UI/Buttons5.png" type="Texture" id=4]
-
-
-
-
+[ext_resource path="res://Scenes/GUI/OverallUI/RankFrame.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/GUI/OverallUI/2ndRankFrame.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/GUI/OverallUI/CurrentPlayerFrame.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/GUI/OverallUI/1stRankFrame.tscn" type="PackedScene" id=8]
 
 [node name="Ranking" type="Node2D"]
 script = ExtResource( 2 )
+rankFrame1Path = ExtResource( 8 )
+rankFrame2Path = ExtResource( 6 )
+rankFramePath = ExtResource( 5 )
+currentRankFramePath = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 z_index = -100
@@ -28,17 +32,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RankFrames" type="VBoxContainer" parent="."]
-margin_left = 64.0
-margin_top = 93.0
-margin_right = 320.0
-margin_bottom = 349.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Line2D" type="Line2D" parent="RankFrames"]
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 64, 92 )
 points = PoolVector2Array( 0, 244, 256, 244 )
 width = 1.0
 default_color = Color( 0.968627, 0.968627, 0.968627, 1 )
+
+[node name="FramesContainer" type="ScrollContainer" parent="."]
+margin_left = 64.0
+margin_top = 93.0
+margin_right = 336.0
+margin_bottom = 333.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="RankFrames" type="VBoxContainer" parent="FramesContainer"]
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

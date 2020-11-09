@@ -11,14 +11,19 @@ public class LoginWindow : TextureRect
 		password = (LineEdit)GetNode("Password");
         
     }
+	public override void _Process(float delta)
+	{
+		base._Process(delta);
+		if (Input.IsActionJustPressed("ui_accept"))
+			Login();
 
-    public override void _Process(float delta)
-    {
-        if (Input.IsActionJustPressed("ui_accept"))
-            Login();
-    }
+		if (Input.IsActionJustPressed("ui_autoLogin"))
+		{
+			AutoLogin();
+		}
+	}
 
-    private void _on_Login_pressed()
+	private void _on_Login_pressed()
 	{
         Login();
 	}
@@ -45,18 +50,6 @@ public class LoginWindow : TextureRect
 		TextureRect registerWindow = (TextureRect)GetParent().GetNode("RegisterWindow");
 		registerWindow.Show();
 	}
-
-	private void _on_Clear_pressed()
-	{
-        
-		username.Text = "";
-		password.Text = "";
-	}
-	private void _on_Close_pressed()
-	{
-		this.Hide();
-	}
-
 	private bool IsValidated()
 	{
 		if (username.Text == "")
@@ -71,6 +64,25 @@ public class LoginWindow : TextureRect
 		}
 		return true;
 	}
+
+	private void AutoLogin()
+    {
+		username.Text = "phong";
+		password.Text = "123";
+		Login();
+    }
+	private void _on_Clear_pressed()
+	{
+        
+		username.Text = "";
+		password.Text = "";
+	}
+	private void _on_Close_pressed()
+	{
+		this.Hide();
+	}
+
+	
     public LineEdit Username { get => username; }
 }
 

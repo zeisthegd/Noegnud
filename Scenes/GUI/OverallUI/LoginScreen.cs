@@ -10,6 +10,7 @@ public class LoginScreen : Control
 
 	public override void _Ready()
 	{
+		GetTree().SetScreenStretch(SceneTree.StretchMode.Mode2d, SceneTree.StretchAspect.Keep, new Vector2(384, 416), 1);
 		loginWindow = (LoginWindow)GetNode("LoginWindow");
 		registerWindow = (RegisterWindow)GetNode("RegisterWindow");
 		loginWindow.Hide();
@@ -17,7 +18,9 @@ public class LoginScreen : Control
 		//AutoLoad.PlayMusic(this, loginScreen);
 	}
 
-	private void _on_LoginButton_pressed()
+    
+
+    private void _on_LoginButton_pressed()
 	{
 		loginWindow.Show();
 		loginWindow.Username.GrabFocus();
