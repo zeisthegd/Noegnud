@@ -5,11 +5,16 @@ using System;
 public class Global : Node
 {
     static string playerName = "Player";
+    static MainMusicPlayer mainMusicPlayer;
+    static UISFX uiSFXPlayer;
 
     public override void _Ready()
     {
         Viewport root = GetTree().Root;
         CurrentScene = root.GetChild(root.GetChildCount() - 1);
+        
+        uiSFXPlayer = (UISFX)GetTree().Root.GetNode("Uisfx");
+        mainMusicPlayer = (MainMusicPlayer)GetTree().Root.GetNode("MainMusicPlayer");
     }
 
     public void GotoScene(string path)
@@ -56,5 +61,6 @@ public class Global : Node
     public static String Option { get { return "res://Scenes/GUI/OverallUI/Option.tscn"; } }
     public static String LoginScreen { get { return "res://Scenes/GUI/OverallUI/LoginScreen.tscn"; } }
 
-
+    public static MainMusicPlayer MainMusicPlayer { get => mainMusicPlayer;}
+    public static UISFX UiSFXPlayer { get => uiSFXPlayer;}
 }

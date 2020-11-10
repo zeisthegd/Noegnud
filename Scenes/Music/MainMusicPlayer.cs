@@ -3,16 +3,22 @@ using System;
 
 public class MainMusicPlayer : AudioStreamPlayer
 {
-	[Export]
-	int volumeDb = 0;
-
+	MusicPlayer musicPlayer;
 	[Export]
 	AudioStream mainMenuMusic;
 	[Export]
 	AudioStream dungeon1Music;
+
+
+	[Export]
+	AudioStream confirm;
+	[Export]
+	AudioStream back;
+
 	public override void _Ready()
 	{
 		base._Ready();
+		musicPlayer = new MusicPlayer();
 		PlayMainMenuMusic();
 	}
 	public void PlayMainMenuMusic()
@@ -23,10 +29,11 @@ public class MainMusicPlayer : AudioStreamPlayer
 	{
 		PlayStream(dungeon1Music);
 	}
+
 	private void PlayStream(AudioStream stream)
 	{
 		Stream = stream;
-		VolumeDb = volumeDb;
+		VolumeDb = AutoLoad.MusicVolume;
 		Play();
-	}
+	}   
 }

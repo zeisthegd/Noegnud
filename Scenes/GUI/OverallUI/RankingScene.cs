@@ -80,6 +80,7 @@ public class RankingScene : Node2D
 
 	private void _on_Back_pressed()
 	{
+        Global.UiSFXPlayer.PlayUIBack();
 		AutoLoad.Global.GotoScene(Global.StartMenu);
 	}
 

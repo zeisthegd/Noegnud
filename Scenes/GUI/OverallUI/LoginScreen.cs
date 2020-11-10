@@ -23,6 +23,7 @@ public class LoginScreen : Control
 	private void _on_LoginButton_pressed()
 	{
 		loginWindow.Show();
+		Global.UiSFXPlayer.PlayUIConfirm();
 		loginWindow.Username.GrabFocus();
 	}
 

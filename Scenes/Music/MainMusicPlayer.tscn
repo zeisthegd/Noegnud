@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Music/OverallMusic/Forest.ogg" type="AudioStream" id=1]
 [ext_resource path="res://Scenes/Music/MainMusicPlayer.cs" type="Script" id=2]
 [ext_resource path="res://Assets/Music/OverallMusic/Menu.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Music/UI/back_style_2_001.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Music/UI/confirm_style_2_echo_001.ogg" type="AudioStream" id=5]
 
 [node name="MainMusicPlayer" type="AudioStreamPlayer"]
 autoplay = true
@@ -12,3 +14,5 @@ __meta__ = {
 }
 mainMenuMusic = ExtResource( 3 )
 dungeon1Music = ExtResource( 1 )
+confirm = ExtResource( 5 )
+back = ExtResource( 4 )

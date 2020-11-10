@@ -20,11 +20,13 @@ public class Option : Control
 	private void _on_Back_pressed()
 	{
 		AutoLoad.Global.GotoScene(Global.StartMenu);
-	}
+        Global.UiSFXPlayer.PlayUIBack();
+    }
 
 
 	private void _on_CheckBox_pressed()
 	{
+        Global.UiSFXPlayer.PlayUIConfirm();
 		AutoLoad.FullScreen = fullScreen.Pressed;
 		AutoLoad.SaveConfig();
 		AutoLoad.LoadConfig();

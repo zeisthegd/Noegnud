@@ -18,7 +18,8 @@ public class RegisterWindow : TextureRect
 	}
 	private void ChangeToLoginWindow()
 	{
-		this.Hide();
+        Global.UiSFXPlayer.PlayUIConfirm();
+        this.Hide();
 		TextureRect loginWindow = (TextureRect)GetParent().GetNode("LoginWindow");
 		loginWindow.Show();
 	}
@@ -34,14 +35,16 @@ public class RegisterWindow : TextureRect
 	}
 
     private void Register()
-    {
+    {     
         if (IsValidated())
         {
+            Global.UiSFXPlayer.PlayUIConfirm();
             if (AutoLoad.PlayerBUS.RegisterNewPlayer(username.Text, password.Text))
             {
                 ChangeToLoginWindow();
             }
         }
+        else Global.UiSFXPlayer.PlayUIBack();
     }
 
 	private bool IsValidated()
@@ -74,10 +77,12 @@ public class RegisterWindow : TextureRect
 		username.Text = "";
 		password.Text = "";
 		cfmPassword.Text = "";
-	}
+        Global.UiSFXPlayer.PlayUIBack();
+    }
 	private void _on_Close_pressed()
 	{
 		this.Hide();
-	}
+        Global.UiSFXPlayer.PlayUIBack();
+    }
 }
 

@@ -15,27 +15,33 @@ public class StartMenu : Control
 	private void _on_Start_pressed()
 	{
 		AutoLoad.Global.GotoScene(Global.Game);
+		Global.UiSFXPlayer.PlayUIConfirm();
+		Global.MainMusicPlayer.PlayDungeon1Music();
 		GetTree().SetScreenStretch(SceneTree.StretchMode.Mode2d, SceneTree.StretchAspect.KeepHeight, new Vector2(384, 416), 1);
 	}
 
 	
 	private void _on_Ranking_pressed()
 	{
+		Global.UiSFXPlayer.PlayUIConfirm();
 		AutoLoad.Global.GotoScene(Global.Ranking);
 	}
 
 
 	private void _on_Options_pressed()
 	{
+		Global.UiSFXPlayer.PlayUIConfirm();
 		AutoLoad.Global.GotoScene(Global.Option);
 	}
 
 	private void _on_Exit_pressed()
 	{
+		Global.UiSFXPlayer.PlayUIBack();
 		GetTree().Quit();
 	}
 	private void _on_Logout_pressed()
 	{
+		Global.UiSFXPlayer.PlayUIBack();
 		AutoLoad.Global.GotoScene(Global.LoginScreen);
 	}
 

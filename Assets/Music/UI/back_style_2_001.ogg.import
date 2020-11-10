@@ -11,5 +11,5 @@ dest_files=[ "res://.import/back_style_2_001.ogg-e4bb7bc978972ff6da326598b606c31
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

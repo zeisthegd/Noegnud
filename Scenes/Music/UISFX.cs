@@ -1,8 +1,9 @@
 using Godot;
 using System;
 
-public class UISFX : MusicPlayer
+public class UISFX : AudioStreamPlayer
 {
+	MusicPlayer musicPlayer = new MusicPlayer();
 	[Export]
 	AudioStream confirm;
 	[Export]
@@ -15,11 +16,19 @@ public class UISFX : MusicPlayer
 
 	public void PlayUIConfirm()
 	{
-		PlayStream(confirm);
-	}
+        PlayStream(confirm);
+
+    }
 
 	public void PlayUIBack()
 	{
-		PlayStream(back);
-	}
+        PlayStream(back);
+
+    }
+    private void PlayStream(AudioStream stream)
+    {
+        Stream = stream;
+        VolumeDb = AutoLoad.MusicVolume;
+        Play();
+    }
 }

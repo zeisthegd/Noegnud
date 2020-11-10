@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Music/UISFX.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Music/UI/back_style_2_001.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Music/UI/confirm_style_2_echo_001.ogg" type="AudioStream" id=3]
 
 [node name="UISFX" type="AudioStreamPlayer"]
 script = ExtResource( 1 )
+confirm = ExtResource( 3 )
+back = ExtResource( 2 )

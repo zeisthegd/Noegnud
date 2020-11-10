@@ -13,18 +13,6 @@
 [ext_resource path="res://Assets/Art/Buttons/LogoutButton1.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Art/Buttons/LogoutButton2.png" type="Texture" id=12]
 
-
-
-
-
-
-
-
-
-
-
-
-
 [node name="StartMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -83,16 +71,6 @@ margin_right = 112.0
 margin_bottom = 204.0
 texture_normal = ExtResource( 7 )
 texture_hover = ExtResource( 6 )
-
-[node name="MyName" type="Label" parent="."]
-margin_left = 315.747
-margin_top = 395.847
-margin_right = 374.747
-margin_bottom = 409.847
-text = "By Phong"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ControlsPage" type="TextureRect" parent="."]
 margin_bottom = 130.0
