@@ -21,18 +21,20 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://Scripts/Global.cs"
+PlayerStats="*res://Scenes/Player/PlayerStats.tscn"
 AutoLoad="*res://Scripts/AutoLoad.cs"
 FloatingTextSpawner="*res://Scenes/GUI/OverallUI/FloatingTextSpawner.cs"
 MainMusicPlayer="*res://Scenes/Music/MainMusicPlayer.tscn"
 Uisfx="*res://Scenes/Music/UISFX.tscn"
+Global="*res://Scripts/Global.cs"
 
 [display]
 
 window/size/width=384
-window/size/height=416
+window/size/height=216
+window/vsync/use_vsync=false
 window/stretch/mode="2d"
-window/stretch/aspect="keep_height"
+window/stretch/aspect="keep"
 
 [global]
 

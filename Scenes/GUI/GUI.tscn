@@ -1,17 +1,20 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/GUI/HealthUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Player/Stats/Progress.tscn" type="PackedScene" id=2]
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 384.0
-margin_bottom = 15.0
+margin_bottom = 216.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -19,15 +22,15 @@ __meta__ = {
 [node name="HealthUI" parent="HBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_bottom = 15.0
+margin_bottom = 216.0
 rect_scale = Vector2( 1, 1 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
-margin_left = 4.0
-margin_right = 4.0
-margin_bottom = 15.0
-rect_clip_content = false
-tab_size = 3
-text = "10
-"
-scroll_active = false
+[node name="Progress" parent="." instance=ExtResource( 2 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -46.0
+margin_top = -54.0
+margin_right = 0.0
+margin_bottom = 0.0

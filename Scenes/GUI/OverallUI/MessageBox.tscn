@@ -1,27 +1,50 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/GUI/OverallUI/MessageBox.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Font/Fantasy Font (1).ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Art/UI/Menu/ErrorMessageBox.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 2 )
 
 [node name="MessageBox" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 30.0
+margin_right = -384.0
+margin_bottom = -186.0
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": ""
 }
 
 [node name="Message" type="LineEdit" parent="."]
-margin_left = 80.0
-margin_top = 160.0
-margin_right = 392.0
-margin_bottom = 184.0
-rect_scale = Vector2( 0.75, 0.75 )
+margin_left = 45.0
+margin_top = 66.0
+margin_right = 357.0
+margin_bottom = 93.0
+custom_fonts/font = SubResource( 1 )
+text = "Error"
+align = 1
 editable = false
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": ""
 }
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 43.0
+margin_top = 61.0
+margin_right = 363.0
+margin_bottom = 96.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

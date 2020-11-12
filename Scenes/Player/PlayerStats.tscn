@@ -5,3 +5,4 @@
 [node name="PlayerStats" type="Node"]
 script = ExtResource( 1 )
 maxHealth = 5
+damage = 3

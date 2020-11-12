@@ -18,34 +18,34 @@ public class RegisterWindow : TextureRect
 	}
 	private void ChangeToLoginWindow()
 	{
-        Global.UiSFXPlayer.PlayUIConfirm();
-        this.Hide();
+		Global.UiSFXPlayer.PlayUIConfirm();
+		this.Hide();
 		TextureRect loginWindow = (TextureRect)GetParent().GetNode("LoginWindow");
 		loginWindow.Show();
 	}
-    public override void _Process(float delta)
-    {
-        if (Input.IsActionJustPressed("ui_accept"))
-            Register();
-    }
-
-    private void _on_Register_pressed()
+	public override void _Process(float delta)
 	{
-        Register();
+		if (Input.IsActionJustPressed("ui_accept"))
+			Register();
 	}
 
-    private void Register()
-    {     
-        if (IsValidated())
-        {
-            Global.UiSFXPlayer.PlayUIConfirm();
-            if (AutoLoad.PlayerBUS.RegisterNewPlayer(username.Text, password.Text))
-            {
-                ChangeToLoginWindow();
-            }
-        }
-        else Global.UiSFXPlayer.PlayUIBack();
-    }
+	private void _on_Register_pressed()
+	{
+		Register();
+	}
+
+	private void Register()
+	{     
+		if (IsValidated())
+		{
+			Global.UiSFXPlayer.PlayUIConfirm();
+			if (AutoLoad.PlayerBUS.RegisterNewPlayer(username.Text, password.Text))
+			{
+				ChangeToLoginWindow();
+			}
+		}
+		else Global.UiSFXPlayer.PlayUIBack();
+	}
 
 	private bool IsValidated()
 	{
@@ -77,12 +77,12 @@ public class RegisterWindow : TextureRect
 		username.Text = "";
 		password.Text = "";
 		cfmPassword.Text = "";
-        Global.UiSFXPlayer.PlayUIBack();
-    }
+		Global.UiSFXPlayer.PlayUIBack();
+	}
 	private void _on_Close_pressed()
 	{
 		this.Hide();
-        Global.UiSFXPlayer.PlayUIBack();
-    }
+		Global.UiSFXPlayer.PlayUIBack();
+	}
 }
 

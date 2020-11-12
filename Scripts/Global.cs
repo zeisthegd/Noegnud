@@ -4,6 +4,7 @@ using System;
 //Class này được sử dụng để chuyển đổi các Scene, thay đổi màn chơi
 public class Global : Node
 {
+    static PlayerStats playerStats;
     static string playerName = "Player";
     static MainMusicPlayer mainMusicPlayer;
     static UISFX uiSFXPlayer;
@@ -13,6 +14,7 @@ public class Global : Node
         Viewport root = GetTree().Root;
         CurrentScene = root.GetChild(root.GetChildCount() - 1);
         
+        playerStats = (PlayerStats)GetTree().Root.GetNode("PlayerStats"); 
         uiSFXPlayer = (UISFX)GetTree().Root.GetNode("Uisfx");
         mainMusicPlayer = (MainMusicPlayer)GetTree().Root.GetNode("MainMusicPlayer");
     }
@@ -63,4 +65,5 @@ public class Global : Node
 
     public static MainMusicPlayer MainMusicPlayer { get => mainMusicPlayer;}
     public static UISFX UiSFXPlayer { get => uiSFXPlayer;}
+    public static PlayerStats PlayerStats { get => playerStats;}
 }

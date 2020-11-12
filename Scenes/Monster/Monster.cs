@@ -11,6 +11,7 @@ public class Monster : KinematicBody2D
 		CHASE
 	}
 
+	protected PlayerStats playerStats;
 	protected Sprite sprite;
 	protected AnimationPlayer animationPlayer;
 	
@@ -21,6 +22,7 @@ public class Monster : KinematicBody2D
 
 	protected MonsterStats stats;//Các thông số của Monster
 	protected PlayerDetectionZone playerDetectionZone;//Khu vực mà Monster có thể nhìn thấy Player
+	protected Hitbox hitbox;
 	protected Hurtbox hurtBox;
 	protected WanderController wanderController;
 
@@ -31,14 +33,18 @@ public class Monster : KinematicBody2D
 	
 	public override void _Ready()
 	{
-
+		playerStats = Global.PlayerStats;
 		sprite = (Sprite)GetNode("Sprite");
 		playerDetectionZone = (PlayerDetectionZone)GetNode("PlayerDetectionZone");
 		stats = (MonsterStats)GetNode("MonsterStats");
+		hitbox = (Hitbox)GetNode("Hitbox");
 		hurtBox = (Hurtbox)GetNode("Hurtbox");
 		animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
 		wanderController = (WanderController)GetNode("WanderController");
+
 	}
+
+
 
 	public override void _Process(float delta)
 	{
@@ -53,11 +59,9 @@ public class Monster : KinematicBody2D
 		AutoPilot();
 		
 	}
-
-	//StateMachine mini
+   
 	private void AutoPilot()
 	{
-		//Kiểm tra state hiện tại
 		switch(currentState)
 		{
 			case MonsterState.CHASE:
@@ -91,13 +95,12 @@ public class Monster : KinematicBody2D
 		}
 		else
 			currentState = MonsterState.WANDER;
-		if (knockBack == Vector2.Zero)//Khi không bị tấn công
+		if (knockBack == Vector2.Zero)
 			velocity = MoveAndSlide(velocity);
 	}
 
 	private void SeekPlayer()
 	{
-		//Nếu playerDetectionZone có Player thì chuyển sang truy đuổi
 		if (playerDetectionZone.SpottedPlayer())
 		{
 			currentState = MonsterState.CHASE;

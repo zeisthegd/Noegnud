@@ -8,3 +8,5 @@
 8 mega 123 10
 9 giga 456 2
 10 tetra 789 36
+11 an 123 0
+12 minhquan 123 0

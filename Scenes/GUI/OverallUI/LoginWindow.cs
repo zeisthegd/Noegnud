@@ -4,19 +4,23 @@ using Database;
 
 public class LoginWindow : TextureRect
 {
+	
+
 	LineEdit username, password; 
-    public override void _Ready()
+	public override void _Ready()
 	{
 		username = (LineEdit)GetNode("Username");
 		password = (LineEdit)GetNode("Password");
-        
-    }
+		username.GrabFocus();
+	}
 	public override void _Process(float delta)
 	{
 		base._Process(delta);
 		if (Input.IsActionJustPressed("ui_accept"))
-			Login();
-
+		{
+			if(this.Visible == true)
+				Login();
+		}
 		if (Input.IsActionJustPressed("ui_autoLogin"))
 		{
 			AutoLogin();
@@ -25,21 +29,21 @@ public class LoginWindow : TextureRect
 
 	private void _on_Login_pressed()
 	{
-        
-        Login();
+		
+		Login();
 	}
 
-    private void Login()
-    {
-        Global.UiSFXPlayer.PlayUIConfirm();
-        AutoLoad.InitPlayerBUS();
-        if (IsValidated())
-        {
-            
-            if (CheckUser())
-                AutoLoad.Global.GotoScene(Global.StartMenu);
-        }
-    }
+	private void Login()
+	{
+		Global.UiSFXPlayer.PlayUIConfirm();
+		AutoLoad.InitPlayerBUS();
+		if (IsValidated())
+		{
+			
+			if (CheckUser())
+				AutoLoad.Global.GotoScene(Global.StartMenu);
+		}
+	}
 
 
 	private bool CheckUser()
@@ -50,8 +54,8 @@ public class LoginWindow : TextureRect
 	private void _on_ToRegister_pressed()
 	{
 		this.Hide();
-        Global.UiSFXPlayer.PlayUIConfirm();
-        TextureRect registerWindow = (TextureRect)GetParent().GetNode("RegisterWindow");
+		Global.UiSFXPlayer.PlayUIConfirm();
+		TextureRect registerWindow = (TextureRect)GetParent().GetNode("RegisterWindow");
 		registerWindow.Show();
 	}
 	private bool IsValidated()
@@ -70,25 +74,25 @@ public class LoginWindow : TextureRect
 	}
 
 	private void AutoLogin()
-    {
+	{
 		username.Text = "phong";
 		password.Text = "123";
 		Login();
-    }
+	}
 	private void _on_Clear_pressed()
 	{
-        Global.UiSFXPlayer.PlayUIBack();
-        username.Text = "";
+		Global.UiSFXPlayer.PlayUIBack();
+		username.Text = "";
 		password.Text = "";
 	}
 	private void _on_Close_pressed()
 	{
-        Global.UiSFXPlayer.PlayUIBack();
-        this.Hide();
+		Global.UiSFXPlayer.PlayUIBack();
+		this.Hide();
 	}
 
 	
-    public LineEdit Username { get => username; }
+	public LineEdit Username { get => username; }
 }
 
 

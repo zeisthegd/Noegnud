@@ -7,8 +7,7 @@ public class StartMenu : Control
 	Global global;
 	public override void _Ready()
 	{
-		//AutoLoad.PlayMusic(this,loginScreen);
-		GetTree().SetScreenStretch(SceneTree.StretchMode.Mode2d, SceneTree.StretchAspect.Keep, new Vector2(384, 416), 1);
+
 	}
 
 
@@ -17,7 +16,6 @@ public class StartMenu : Control
 		AutoLoad.Global.GotoScene(Global.Game);
 		Global.UiSFXPlayer.PlayUIConfirm();
 		Global.MainMusicPlayer.PlayDungeon1Music();
-		GetTree().SetScreenStretch(SceneTree.StretchMode.Mode2d, SceneTree.StretchAspect.KeepHeight, new Vector2(384, 416), 1);
 	}
 
 	

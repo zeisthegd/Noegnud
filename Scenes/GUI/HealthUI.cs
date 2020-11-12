@@ -60,8 +60,7 @@ public class HealthUI : Control
 	//Lay du lieu cua nguoi choi
 	private void GetPlayerStats()
 	{
-		string playerStatsName = "PlayerStats";		
-		this.playerStats = (PlayerStats)Global.GetPlayer().GetNode(playerStatsName);
+        this.playerStats = Global.PlayerStats;
 	}
 
 	public int MaxHearts { get => maxHearts; set => maxHearts = Mathf.Max(value, 1); }

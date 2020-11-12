@@ -3,11 +3,10 @@ using System;
 
 public class MonsterStats : Stats
 {
-	//Class này hình như cũng dư
-
 	public override void _Ready()
 	{
-		base._Ready();	
-	}
+		base._Ready();
+        Connect(nameof(MonsterStats.OutOfHealth), Global.PlayerStats, nameof(PlayerStats._on_Player_killed_Monster));
+    }
 	
 }

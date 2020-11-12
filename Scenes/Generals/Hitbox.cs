@@ -5,7 +5,7 @@ using System;
 //Dùng chung cho Player và Monster
 public class Hitbox : Area2D
 {
-	[Export]
-	int damage = 2;//Damage dùng để giảm máu của các nhân vật bị tấn công
+    [Export]
+    int damage;//Damage dùng để giảm máu của các nhân vật bị tấn công
 	public int Damage { get => damage; set => damage = value; }
 }

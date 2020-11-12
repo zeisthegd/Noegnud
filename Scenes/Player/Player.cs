@@ -14,6 +14,7 @@ public class Player : KinematicBody2D
 	PlayerMovementHandler playerMovementHandler;
 	PlayerStateMachine playerStateMachine;
 
+	Hitbox hitbox;
 	Hurtbox hurtBox;
 	PlayerStats playerStats;
 	#endregion
@@ -40,18 +41,26 @@ public class Player : KinematicBody2D
 	//Ánh xạ các Child node
 	private void InitializeAllChilds()
 	{
-		playerStats = (PlayerStats)GetNode("PlayerStats");
+		
+		hitbox = (Hitbox)GetNode("SwordPosition").GetNode("SwordArea");
 		hurtBox = (Hurtbox)GetNode("Hurtbox");
 		spriteSheet = (Sprite)GetNode(spriteNodeName);
 		animationPlayer = (AnimationPlayer)GetNode(animationPlayerName);
+		ConnectPlayerStats();
 	}
 	 
 	private void InitializePlayer()
 	{
 		playerMovementHandler = new PlayerMovementHandler(this);
 		TextureHandler.ChangePlayerTexture(spriteSheet, spriteSheetPath);
+		playerStateMachine = new PlayerStateMachine(this);		
+	}
 
-		playerStateMachine = new PlayerStateMachine(this);
+	private void ConnectPlayerStats()
+	{
+		playerStats = Global.PlayerStats;
+		hitbox.Damage = playerStats.Damage;
+		playerStats.Connect(nameof(Stats.OutOfHealth), this, nameof(_on_PlayerStats_OutOfHealth));
 	}
 
 	#endregion

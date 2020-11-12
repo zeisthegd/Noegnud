@@ -66,7 +66,6 @@ namespace Database
             {
                 if(CheckPassword(password))
                 {
-                    GD.Print(playersList[currentPlayerIndex].HighScore.ToString());
                     return true;
                 }
             }
