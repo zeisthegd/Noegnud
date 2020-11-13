@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sword.png-ef14fa34cfb2b311c385bdc8a1425900.stex"
+path="res://.import/StatProgress.png-c88c7f49cdd134b5640c545d602f1f06.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/UI/Icons/Sword.png"
-dest_files=[ "res://.import/Sword.png-ef14fa34cfb2b311c385bdc8a1425900.stex" ]
+source_file="res://Assets/Art/UI/Progress/StatProgress.png"
+dest_files=[ "res://.import/StatProgress.png-c88c7f49cdd134b5640c545d602f1f06.stex" ]
 
 [params]
 

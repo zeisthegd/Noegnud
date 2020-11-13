@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MonsterSlayedProgress.png-8fd79dffec74d8f434fd42468d6a783e.stex"
+path="res://.import/MonsterSlayedProgress3.png-51d636ef624f88c24fe6621cd7ee6982.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/UI/Icons/MonsterSlayedProgress.png"
-dest_files=[ "res://.import/MonsterSlayedProgress.png-8fd79dffec74d8f434fd42468d6a783e.stex" ]
+source_file="res://Assets/Art/UI/Progress/MonsterSlayedProgress3.png"
+dest_files=[ "res://.import/MonsterSlayedProgress3.png-51d636ef624f88c24fe6621cd7ee6982.stex" ]
 
 [params]
 
