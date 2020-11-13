@@ -3,7 +3,7 @@ using System;
 
 public class PlayerSFX : AudioStreamPlayer
 {
-    MusicPlayer musicPlayer = new MusicPlayer();
+	MusicPlayer musicPlayer = new MusicPlayer();
 	[Export]
 	AudioStream hurt;
 	[Export]
@@ -14,20 +14,20 @@ public class PlayerSFX : AudioStreamPlayer
 	}
 	public void PlayHurtSFX()
 	{
-        PlayStream(hurt);
+		PlayStream(hurt);
 	}
 
 	public void PlaySwipeSFX()
 	{
-        PlayStream(swipe);
+		PlayStream(swipe);
 	}
 
-    private void PlayStream(AudioStream stream)
-    {
-        Stream = stream;
-        VolumeDb = AutoLoad.MusicVolume;
-        Play();
-    }
+	private void PlayStream(AudioStream stream)
+	{
+		Stream = stream;
+		VolumeDb = AutoLoad.MusicVolume;
+		Play();
+	}
 
 
 }

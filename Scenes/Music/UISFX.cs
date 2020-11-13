@@ -16,19 +16,19 @@ public class UISFX : AudioStreamPlayer
 
 	public void PlayUIConfirm()
 	{
-        PlayStream(confirm);
+		PlayStream(confirm);
 
-    }
+	}
 
 	public void PlayUIBack()
 	{
-        PlayStream(back);
+		PlayStream(back);
 
-    }
-    private void PlayStream(AudioStream stream)
-    {
-        Stream = stream;
-        VolumeDb = AutoLoad.MusicVolume;
-        Play();
-    }
+	}
+	private void PlayStream(AudioStream stream)
+	{
+		Stream = stream;
+		VolumeDb = AutoLoad.MusicVolume;
+		Play();
+	}
 }
