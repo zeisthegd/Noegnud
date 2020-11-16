@@ -9,7 +9,6 @@ public class MainMusicPlayer : AudioStreamPlayer
 	[Export]
 	AudioStream dungeon1Music;
 
-
 	[Export]
 	AudioStream confirm;
 	[Export]
@@ -18,8 +17,8 @@ public class MainMusicPlayer : AudioStreamPlayer
 	public override void _Ready()
 	{
 		base._Ready();
-		musicPlayer = new MusicPlayer();
 		PlayMainMenuMusic();
+
 	}
 	public void PlayMainMenuMusic()
 	{
@@ -29,11 +28,15 @@ public class MainMusicPlayer : AudioStreamPlayer
 	{
 		PlayStream(dungeon1Music);
 	}
-
 	private void PlayStream(AudioStream stream)
 	{
 		Stream = stream;
 		VolumeDb = AutoLoad.MusicVolume;
 		Play();
-	}   
+	}
+
+	public void _on_Music_Volume_Change()
+	{
+		VolumeDb = AutoLoad.MusicVolume;
+	}
 }

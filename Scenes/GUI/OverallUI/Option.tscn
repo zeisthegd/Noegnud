@@ -1,13 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/GUI/OverallUI/Option.cs" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Background/Option.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Art/UI/Buttons5.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Art/UI/Buttons6.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Font/Fantasy Font (1).ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Font/FantasyFont.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Assets/Art/UI/Menu/Slider1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Art/UI/Menu/Tick/Tick3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Art/UI/Menu/Tick/Tick1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Art/UI/Menu/Tick/Tick2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Art/UI/Menu/Slider2.png" type="Texture" id=11]
 
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 112, 9 )
 
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 112, 9 )
 
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 112, 9 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 6
+font_data = ExtResource( 5 )
 
 [node name="Option" type="Control"]
 anchor_right = 1.0
@@ -19,19 +38,47 @@ __meta__ = {
 
 [node name="MusicVolume" type="HSlider" parent="."]
 margin_left = 144.0
-margin_top = 112.0
+margin_top = 88.0
 margin_right = 304.0
-margin_bottom = 128.0
+margin_bottom = 104.0
+grow_horizontal = 0
+custom_icons/tick = ExtResource( 9 )
+custom_icons/grabber_disabled = ExtResource( 10 )
+custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber = ExtResource( 8 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
 max_value = 10.0
+value = 5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SfxVolume" type="HSlider" parent="."]
+margin_left = 144.0
+margin_top = 104.0
+margin_right = 304.0
+margin_bottom = 120.0
+grow_horizontal = 0
+custom_icons/tick = ExtResource( 9 )
+custom_icons/grabber_disabled = ExtResource( 10 )
+custom_icons/grabber_highlight = ExtResource( 9 )
+custom_icons/grabber = ExtResource( 8 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+max_value = 10.0
+value = 5.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FullScreen" type="CheckBox" parent="."]
 margin_left = 144.0
-margin_top = 204.0
-margin_right = 168.0
-margin_bottom = 228.0
+margin_top = 128.0
+margin_right = 214.0
+margin_bottom = 152.0
 text = "Enable"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -51,16 +98,50 @@ texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
 
 [node name="MVolumeValue" type="Label" parent="."]
-margin_left = 310.0
-margin_top = 114.0
-margin_right = 326.0
-margin_bottom = 130.0
-text = "0"
+margin_left = 309.0
+margin_top = 91.0
+margin_right = 325.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 4 )
+text = "10"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SFXolumeValue" type="Label" parent="."]
+margin_left = 309.0
+margin_top = 107.0
+margin_right = 325.0
+margin_bottom = 121.0
+custom_fonts/font = SubResource( 4 )
+text = "10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lblSFXVolume" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 88.0
+margin_right = 140.0
+margin_bottom = 102.0
+custom_fonts/font = ExtResource( 6 )
+text = "Music Volume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lblMusicVolume" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 104.0
+margin_right = 130.0
+margin_bottom = 118.0
+custom_fonts/font = ExtResource( 6 )
+text = "SFX Volume"
 [connection signal="value_changed" from="MusicVolume" to="." method="_on_MusicVolume_value_changed"]
+[connection signal="value_changed" from="SfxVolume" to="." method="_on_MusicVolume_value_changed"]
 [connection signal="pressed" from="FullScreen" to="." method="_on_CheckBox_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

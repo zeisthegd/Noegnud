@@ -3,11 +3,11 @@ using System;
 
 public class PlayerSFX : AudioStreamPlayer
 {
-	MusicPlayer musicPlayer = new MusicPlayer();
 	[Export]
 	AudioStream hurt;
 	[Export]
 	AudioStream swipe;
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -29,5 +29,9 @@ public class PlayerSFX : AudioStreamPlayer
 		Play();
 	}
 
+	public void _on_SFX_Volume_Change()
+	{
+		VolumeDb = AutoLoad.SfxVolume;
+	}
 
 }

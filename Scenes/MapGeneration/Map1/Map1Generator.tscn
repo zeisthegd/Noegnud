@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/MapGeneration/MapGenerator.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Monster/Bat/Bat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Tilemaps/Dungeon.tres" type="TileSet" id=3]
+[ext_resource path="res://Scenes/MapGeneration/Stair/StairDown.tscn" type="PackedScene" id=4]
 
 [node name="Map1Generator" instance=ExtResource( 1 )]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 32 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 cell_y_sort = true
+stair = ExtResource( 4 )
 monster1 = ExtResource( 2 )
 
 [node name="FloorMap" parent="." index="0"]

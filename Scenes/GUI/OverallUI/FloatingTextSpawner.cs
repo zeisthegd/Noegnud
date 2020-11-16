@@ -10,6 +10,5 @@ public class FloatingTextSpawner : Node2D
 		MessageBox messageBox = (MessageBox)messageBoxScene.Instance();
 		messageBox.Message = message;
 		Global.CurrentScene.AddChild(messageBox);
-
 	}
 }

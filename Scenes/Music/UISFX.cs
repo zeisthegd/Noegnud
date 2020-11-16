@@ -2,8 +2,7 @@ using Godot;
 using System;
 
 public class UISFX : AudioStreamPlayer
-{
-	MusicPlayer musicPlayer = new MusicPlayer();
+{ 
 	[Export]
 	AudioStream confirm;
 	[Export]
@@ -30,5 +29,10 @@ public class UISFX : AudioStreamPlayer
 		Stream = stream;
 		VolumeDb = AutoLoad.MusicVolume;
 		Play();
+	}
+
+	public void _on_SFX_Volume_Change()
+	{
+		VolumeDb = AutoLoad.SfxVolume;
 	}
 }
