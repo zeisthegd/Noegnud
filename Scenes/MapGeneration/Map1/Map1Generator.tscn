@@ -6,10 +6,13 @@
 [ext_resource path="res://Scenes/MapGeneration/Stair/StairDown.tscn" type="PackedScene" id=4]
 
 [node name="Map1Generator" instance=ExtResource( 1 )]
+z_index = -2
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 32 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 cell_y_sort = true
+collision_layer = 3
+collision_mask = 3
 stair = ExtResource( 4 )
 monster1 = ExtResource( 2 )
 

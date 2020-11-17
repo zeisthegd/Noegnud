@@ -19,6 +19,7 @@ public class MapGenerator : TileMap
 
 	const int spriteSize = 16;
 	const int size = 4;
+	string from = "";
 	Room[,] roomsMap = new Room[size, size];
 	Random randomizer = new Random();
 	Player player;
@@ -47,14 +48,14 @@ public class MapGenerator : TileMap
 	private void GetChildNodes()
 	{
 		try
-        {
+		{
 			floorMap = (TileMap)GetNode("FloorMap");
 			player = Global.GetPlayer();
 		}
 		catch
-        {
+		{
 
-        }
+		}
 		
 	}
 
@@ -72,7 +73,8 @@ public class MapGenerator : TileMap
 	private void RandomGenRoom()
 	{
 		int startingRoomCol = RandomInt(0, 4);
-		GenerateSolutionPath(startingRoomCol, 0);
+		GD.Print(startingRoomCol);
+		GenerateSolutionPath(0,startingRoomCol);
 		SetPlayerStartingPosition(startingRoomCol);
 		SetLeftoverRooms();
 	}
@@ -116,9 +118,14 @@ public class MapGenerator : TileMap
 	{
 		if (col - 1 <= 0)
 			NextBottomRoom(row, col);
+		else if (from == "left")
+		{
+			NextRightRoom(row, col);
+		}
 		else
 		{
 			SetRoomBasedOnAbove(row, col);
+			from = "right";
 			GenerateSolutionPath(row, col - 1);
 		}
 	}
@@ -126,9 +133,14 @@ public class MapGenerator : TileMap
 	{
 		if (col + 1 >= size)
 			NextBottomRoom(row, col);
+		else if(from == "right")
+		{
+			NextLeftRoom(row, col);
+		}
 		else
 		{
 			SetRoomBasedOnAbove(row, col);
+			from = "left";
 			GenerateSolutionPath(row, col + 1);
 		}
 	}
@@ -138,6 +150,7 @@ public class MapGenerator : TileMap
 			SetExitRoom(row, col);
 		else
 		{
+			GD.Print($"GODOWN,{row},{col}");
 			SetExactRoomType(ref roomsMap[row, col], 2);
 			GenerateSolutionPath(row + 1, col);
 		}
@@ -163,15 +176,20 @@ public class MapGenerator : TileMap
 	{
 		if (RoomAboveIsType2(row, col))
 		{
+			GD.Print($"{row - 1},{col} == 2");
 			SetExactRoomType(ref roomsMap[row, col], 2);
 		}
-		else SetRandomRoomType(ref roomsMap[row, col], 1);
+		else
+		{
+			GD.Print($"{row - 1},{col} != 2");
+			SetRandomRoomType(ref roomsMap[row, col], 1);
+		}
 	}
 	private bool RoomAboveIsType2(int row, int col)
 	{
 		if (row == 0)
 			return false;
-		else if (roomsMap[row - 1, col] is Room2)
+		else if (roomsMap[row - 1, col] is Room2 r2)
 			return true;
 		return false;
 	}
@@ -288,7 +306,7 @@ public class MapGenerator : TileMap
 	private void SetPlayerStartingPosition(int startRoomX)
 	{
 		Vector2 startingPosition = new Vector2();
-		int[,] template = roomsMap[startRoomX, 0].Template;
+		int[,] template = roomsMap[0, startRoomX].Template;
 		for (int i = 0; i < Room.Height; i++)
 		{
 			for (int j = 0; j < Room.Width; j++)
@@ -303,7 +321,7 @@ public class MapGenerator : TileMap
 									int cellPosX = (j + Room.Width * startRoomX) * 16 + 8;
 									int cellPosY = i * 32 + 16;
 									startingPosition = new Vector2(cellPosX, cellPosY);
-									entranceStair = new Vector2(i + Room.Width * startRoomX, i);
+									entranceStair = new Vector2(j + Room.Width * startRoomX, i);
 									player.GlobalPosition = startingPosition;
 									return;
 								}

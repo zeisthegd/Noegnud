@@ -16,10 +16,13 @@ position = Vector2( 105.435, 78.9556 )
 remote_path = NodePath("../../MainCamera")
 
 [node name="MainCamera" parent="MainSort" instance=ExtResource( 2 )]
-zoom = Vector2( 0.75, 0.75 )
+zoom = Vector2( 1, 1 )
 
 [node name="Map1Generator" parent="MainSort" instance=ExtResource( 4 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 3 )]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.0627451, 0.0509804, 0.0509804, 1 )

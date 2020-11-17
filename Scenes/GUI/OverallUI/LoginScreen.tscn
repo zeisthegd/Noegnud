@@ -47,6 +47,7 @@ margin_left = 336.0
 margin_top = 174.0
 margin_right = 360.0
 margin_bottom = 198.0
+rect_scale = Vector2( 0.75, 0.75 )
 texture_normal = ExtResource( 22 )
 texture_hover = ExtResource( 21 )
 __meta__ = {
@@ -56,7 +57,7 @@ __meta__ = {
 [node name="PressEnter" type="AnimatedSprite" parent="."]
 position = Vector2( 142, 168 )
 frames = SubResource( 1 )
-frame = 5
+frame = 8
 playing = true
 centered = false
 
