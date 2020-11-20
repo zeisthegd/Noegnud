@@ -7,5 +7,6 @@ script = ExtResource( 1 )
 wanderTime = 2.0
 
 [node name="wanderDuration" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 [connection signal="timeout" from="wanderDuration" to="." method="_on_Timer_timeout"]

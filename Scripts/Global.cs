@@ -45,7 +45,7 @@ public class Global : Node
     public static void SpawnMonster(PackedScene scene, Vector2 position)
     {
         Monster newMonster = (Monster)scene.Instance();
-        Global.CurrentScene.AddChild(newMonster);
+        Global.CurrentScene.GetNode("MainSort").AddChild(newMonster);
         newMonster.GlobalPosition = position;
     }
 

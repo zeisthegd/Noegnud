@@ -17,15 +17,16 @@ rankFramePath = ExtResource( 5 )
 currentRankFramePath = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1, 0.51484 )
 z_index = -100
 texture = ExtResource( 1 )
 centered = false
 
 [node name="Back" type="TextureButton" parent="."]
-margin_left = 320.0
-margin_top = 384.0
-margin_right = 368.0
-margin_bottom = 400.0
+margin_left = 328.0
+margin_top = 192.0
+margin_right = 376.0
+margin_bottom = 208.0
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 3 )
 __meta__ = {
@@ -33,16 +34,16 @@ __meta__ = {
 }
 
 [node name="Line2D" type="Line2D" parent="."]
-position = Vector2( 64, 92 )
+position = Vector2( 64, -96 )
 points = PoolVector2Array( 0, 244, 256, 244 )
 width = 1.0
 default_color = Color( 0.968627, 0.968627, 0.968627, 1 )
 
 [node name="FramesContainer" type="ScrollContainer" parent="."]
 margin_left = 64.0
-margin_top = 93.0
+margin_top = 40.0
 margin_right = 336.0
-margin_bottom = 333.0
+margin_bottom = 138.0
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false,

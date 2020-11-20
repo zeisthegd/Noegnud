@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/MapGeneration/MapGenerator.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Monster/Bat/Bat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Tilemaps/Dungeon.tres" type="TileSet" id=3]
 [ext_resource path="res://Scenes/MapGeneration/Stair/StairDown.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Monster/Archer/Archer.tscn" type="PackedScene" id=5]
 
 [node name="Map1Generator" instance=ExtResource( 1 )]
 z_index = -2
@@ -15,6 +16,7 @@ collision_layer = 3
 collision_mask = 3
 stair = ExtResource( 4 )
 monster1 = ExtResource( 2 )
+monster2 = ExtResource( 5 )
 
 [node name="FloorMap" parent="." index="0"]
 tile_set = ExtResource( 3 )

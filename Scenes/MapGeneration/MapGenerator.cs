@@ -366,35 +366,50 @@ public class MapGenerator : TileMap
 		}
 	}
 
-	
-
 	private void SpawnMonsterInEveryRoom()
 	{
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
 			{
-				SpawnMonster(monster1, i, j);
+				SpawnMonster(i, j);
 			}
 		}
 	}
 
-	private async void SpawnMonster(PackedScene monster, int roomX, int roomY)
+	private async void SpawnMonster(int roomX, int roomY)
 	{
 		var timer = new Timer();
 		AddChild(timer);
 		timer.WaitTime = 0.05F;
 		timer.Start();
 		await ToSignal(timer, "timeout");
+
 		for (int i = 0; i < 3; i++)
 		{
 			int randX = (RandomInt(2, 9) + Room.Width * roomX) * 16 + 8;
 			int randY = (RandomInt(2, 7) + Room.Height * roomY) * 32 + 16;
-			Global.SpawnMonster(monster, new Vector2(randX, randY));
-
-			
+			SpawnRandomMonster(randX, randY);		
 		}
 
+	}
+	private void SpawnRandomMonster(int randX, int randY)
+	{
+		int randomMonster = RandomInt(0, 2);
+
+		switch(randomMonster)
+		{
+			case 0:
+				Global.SpawnMonster(monster1, new Vector2(randX, randY));
+				break;
+			case 1:
+				Global.SpawnMonster(monster2, new Vector2(randX, randY));
+				break;
+			case 2:
+				Global.SpawnMonster(monster3, new Vector2(randX, randY));
+				break;
+		}
+		
 	}
 
 }

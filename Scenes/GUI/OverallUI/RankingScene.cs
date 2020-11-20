@@ -67,20 +67,19 @@ public class RankingScene : Node2D
 			newFrame.DisplayPlayerData($"#{i + 1}", sortedPlayerList[i].UserName,
 				sortedPlayerList[i].HighScore.ToString());
 		}
-
 	}
 	private void AddCurrentPlayerRankFrame()
 	{
 		PlayerDTO currentPlayer = AutoLoad.PlayerBUS.GetCurrentPlayer();
 		RankFrames newFrame = (RankFrames)currentRankFramePath.Instance();
 		this.AddChild(newFrame);
-		newFrame.RectGlobalPosition = new Vector2(64,340);
+		newFrame.RectGlobalPosition = new Vector2(64,150);
 		newFrame.DisplayPlayerData($"#{sortedPlayerList.IndexOf(currentPlayer) + 1}", currentPlayer.UserName, currentPlayer.HighScore.ToString());
 	}
 
 	private void _on_Back_pressed()
 	{
-        Global.UiSFXPlayer.PlayUIBack();
+		Global.UiSFXPlayer.PlayUIBack();
 		AutoLoad.Global.GotoScene(Global.StartMenu);
 	}
 

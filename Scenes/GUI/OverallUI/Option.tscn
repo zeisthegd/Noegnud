@@ -57,9 +57,9 @@ __meta__ = {
 
 [node name="SfxVolume" type="HSlider" parent="."]
 margin_left = 144.0
-margin_top = 104.0
+margin_top = 112.0
 margin_right = 304.0
-margin_bottom = 120.0
+margin_bottom = 128.0
 grow_horizontal = 0
 custom_icons/tick = ExtResource( 9 )
 custom_icons/grabber_disabled = ExtResource( 10 )
@@ -76,9 +76,10 @@ __meta__ = {
 
 [node name="FullScreen" type="CheckBox" parent="."]
 margin_left = 144.0
-margin_top = 128.0
+margin_top = 144.0
 margin_right = 214.0
-margin_bottom = 152.0
+margin_bottom = 168.0
+custom_fonts/font = ExtResource( 6 )
 text = "Enable"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -90,10 +91,10 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Back" type="TextureButton" parent="."]
-margin_left = 320.0
-margin_top = 384.0
-margin_right = 368.0
-margin_bottom = 400.0
+margin_left = 328.0
+margin_top = 192.0
+margin_right = 376.0
+margin_bottom = 208.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
 
@@ -136,11 +137,22 @@ __meta__ = {
 
 [node name="lblMusicVolume" type="Label" parent="."]
 margin_left = 64.0
-margin_top = 104.0
+margin_top = 112.0
 margin_right = 130.0
-margin_bottom = 118.0
+margin_bottom = 126.0
 custom_fonts/font = ExtResource( 6 )
 text = "SFX Volume"
+
+[node name="lblFullScreen" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 144.0
+margin_right = 130.0
+margin_bottom = 158.0
+custom_fonts/font = ExtResource( 6 )
+text = "Fullscreen"
+__meta__ = {
+"_editor_description_": ""
+}
 [connection signal="value_changed" from="MusicVolume" to="." method="_on_MusicVolume_value_changed"]
 [connection signal="value_changed" from="SfxVolume" to="." method="_on_MusicVolume_value_changed"]
 [connection signal="pressed" from="FullScreen" to="." method="_on_CheckBox_pressed"]

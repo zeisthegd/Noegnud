@@ -44,6 +44,7 @@ shape = SubResource( 1 )
 position = Vector2( -0.581181, -2.91447 )
 texture = ExtResource( 2 )
 hframes = 5
+frame = 4
 
 [node name="AnimationPlayer" parent="." index="3"]
 autoplay = "Flap"
@@ -70,6 +71,9 @@ position = Vector2( 0.0883865, -7.07107 )
 scale = Vector2( 0.423511, 0.223669 )
 shape = SubResource( 3 )
 disabled = false
+
+[node name="WanderController" parent="." index="8"]
+maxRandomSpeed = 40.0
 
 [editable path="Hurtbox"]
 

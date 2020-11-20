@@ -8,16 +8,17 @@ public class Monster : KinematicBody2D
 	enum MonsterState
 	{
 		WANDER,
-		CHASE
+		CHASE,
+		ATTACK
 	}
 
 	protected PlayerStats playerStats;
 	protected Sprite sprite;
 	protected AnimationPlayer animationPlayer;
-	
 
-	Vector2 velocity = new Vector2();//Tốc độ của Monster
-	Vector2 knockBack = new Vector2();//Khi bị tấn công Monster sẽ di chuyển bằng vector Knockback
+
+	protected Vector2 velocity = new Vector2();//Tốc độ của Monster
+	protected Vector2 knockBack = new Vector2();//Khi bị tấn công Monster sẽ di chuyển bằng vector Knockback
 
 
 	protected MonsterStats stats;//Các thông số của Monster
@@ -44,8 +45,6 @@ public class Monster : KinematicBody2D
 
 	}
 
-
-
 	public override void _Process(float delta)
 	{
 		base._Process(delta);
@@ -71,6 +70,8 @@ public class Monster : KinematicBody2D
 			case MonsterState.WANDER:
 				GoWandering();
 				break;
+			case MonsterState.ATTACK:
+
 
 			default:
 				
@@ -79,6 +80,11 @@ public class Monster : KinematicBody2D
 		FlipSprite();
 		
 	}
+	protected virtual void Attack()
+	{
+
+	}
+
 	protected virtual void GoWandering()
 	{
 		wanderController.UpdateWanderDirection();
