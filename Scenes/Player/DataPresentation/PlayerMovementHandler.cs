@@ -48,6 +48,11 @@ class PlayerMovementHandler
 		velocity = player.MoveAndSlide(velocity);
 	}
 
+	public void ApplyKnockBack(Vector2 knockback)
+    {
+		velocity += knockback;
+    }
+
     #region Properties
 
     public static Vector2 PlayerVelocity { get => velocity;}

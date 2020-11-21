@@ -5,7 +5,7 @@ public class Monster : KinematicBody2D
 {
 	[Export]
 	protected int point;
-	enum MonsterState
+	protected enum MonsterState
 	{
 		WANDER,
 		CHASE,
@@ -30,7 +30,7 @@ public class Monster : KinematicBody2D
 	const int MAX_SPEED = 50;//Tốc độ di chuyển tối đa của Monster 
 	const int FRICTION = 80;
 
-	MonsterState currentState = MonsterState.WANDER;//Khởi đầu MonsterState là tuần tra
+	protected MonsterState currentState = MonsterState.WANDER;//Khởi đầu MonsterState là tuần tra
 	
 	public override void _Ready()
 	{
@@ -59,7 +59,7 @@ public class Monster : KinematicBody2D
 		
 	}
    
-	private void AutoPilot()
+	protected virtual void AutoPilot()
 	{
 		switch(currentState)
 		{
@@ -71,8 +71,8 @@ public class Monster : KinematicBody2D
 				GoWandering();
 				break;
 			case MonsterState.ATTACK:
-
-
+				Attack();
+				break;
 			default:
 				
 				break;
@@ -132,7 +132,7 @@ public class Monster : KinematicBody2D
 
 	//Nếu đang di chuyển về bên trái
 	//Lật sprite
-	private void FlipSprite()
+	protected void FlipSprite()
 	{
 		sprite.FlipH = velocity.x < 0;
 	}
@@ -154,10 +154,11 @@ public class Monster : KinematicBody2D
 		QueueFree();
 	}
 
-	private void AddScoreToPlayer()
+	protected void ChangeToAttack()
 	{
-
+		currentState = MonsterState.ATTACK;
 	}
+
 
 	
 }

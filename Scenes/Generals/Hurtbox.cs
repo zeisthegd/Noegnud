@@ -57,7 +57,6 @@ public class Hurtbox : Area2D
 		var currentScene = GetTree().CurrentScene;
 		currentScene.AddChild(hitFX);
 		hitFX.GlobalPosition = this.GlobalPosition;
-
 	}
 
 	//Sau khi bộ đếm ngược thời gian đếm về 0

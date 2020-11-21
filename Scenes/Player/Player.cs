@@ -94,10 +94,12 @@ public class Player : KinematicBody2D
 	//Tìm hitbox của nguồn gây sát thương và áp dụng damage của hitbox đó vào HP của Player
 	private void TakeDamageFromMonster(Area2D area)
 	{
-		if (area is Hitbox hitbox)
+		GD.Print("touched");
+		if (area is Hitbox hitbox)			
 		{
+			GD.Print("hit");
 			playerStats.CurrentHealth -= hitbox.Damage;
-			
+			playerMovementHandler.ApplyKnockBack(BeingKnockedBack(area));
 			if (playerStats.CurrentHealth >= 0)
 			{
 				hurtBox.CreateHitEffect();//Sau đó tạo một effect hit
@@ -105,6 +107,14 @@ public class Player : KinematicBody2D
 
 			}
 		}
+	}
+
+	private Vector2 BeingKnockedBack(Node2D attackSourse)
+    {
+		float knockBackForce = 50F;
+		Vector2 knockback = (GlobalPosition - attackSourse.GlobalPosition).Normalized();
+		knockback *= knockBackForce;
+		return knockback;
 	}
 
 	#endregion
