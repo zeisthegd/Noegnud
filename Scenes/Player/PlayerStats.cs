@@ -37,6 +37,13 @@ public class PlayerStats : Stats
 		}
 	}
    
+	public void ResetStats()
+	{
+		Damage = 1;
+		currentExp = 0;
+		points = 0;
+		CurrentHealth = MaxHealth;
+	}
 
 	public int Points { get => points; set => points = value; }
 }

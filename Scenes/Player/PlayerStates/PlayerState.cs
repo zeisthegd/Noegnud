@@ -57,6 +57,7 @@ abstract class PlayerState
     }
     public void ChangeToAttacking()
     {
+        playerStateMachine.Player.PlayerSFX.PlaySwipeSFX();
         playerStateMachine.CurrentState = playerStateMachine.PlayerAttackingState;
     }
 }

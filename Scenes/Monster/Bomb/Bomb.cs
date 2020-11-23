@@ -75,8 +75,12 @@ public class Bomb : Monster
 
 	private void InRangeToAttack()
 	{
-		if (GlobalPosition.DistanceTo(Global.GetPlayer().GlobalPosition) < 15)
-			ChangeToAttack();
+		if(Global.GetPlayer() != null)
+		{
+			if (GlobalPosition.DistanceTo(Global.GetPlayer().GlobalPosition) < 15)
+				ChangeToAttack();
+		}
+		
 	}
 	private void _on_AnimationPlayer_animation_finished(String anim_name)
 	{

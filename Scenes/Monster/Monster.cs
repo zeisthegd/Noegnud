@@ -16,10 +16,8 @@ public class Monster : KinematicBody2D
 	protected Sprite sprite;
 	protected AnimationPlayer animationPlayer;
 
-
 	protected Vector2 velocity = new Vector2();//Tốc độ của Monster
 	protected Vector2 knockBack = new Vector2();//Khi bị tấn công Monster sẽ di chuyển bằng vector Knockback
-
 
 	protected MonsterStats stats;//Các thông số của Monster
 	protected PlayerDetectionZone playerDetectionZone;//Khu vực mà Monster có thể nhìn thấy Player
@@ -27,8 +25,8 @@ public class Monster : KinematicBody2D
 	protected Hurtbox hurtBox;
 	protected WanderController wanderController;
 
-	const int MAX_SPEED = 50;//Tốc độ di chuyển tối đa của Monster 
-	const int FRICTION = 80;
+	protected const int MAX_SPEED = 50;//Tốc độ di chuyển tối đa của Monster 
+	protected const int FRICTION = 80;
 
 	protected MonsterState currentState = MonsterState.WANDER;//Khởi đầu MonsterState là tuần tra
 	

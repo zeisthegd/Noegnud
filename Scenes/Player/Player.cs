@@ -3,7 +3,8 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	#region Fields
+	PlayerSFX playerSFX;
+
 	static string spriteSheetPath = "res://Assets/Art/Player/Player.png";
 	const string spriteNodeName = "Sprite";
 	const string animationPlayerName = "AnimationPlayer";
@@ -17,9 +18,9 @@ public class Player : KinematicBody2D
 	Hitbox hitbox;
 	Hurtbox hurtBox;
 	PlayerStats playerStats;
-	#endregion
 
-	#region Override Methods
+
+
 	public override void _Ready()
 	{
 		InitializeAllChilds();
@@ -34,14 +35,14 @@ public class Player : KinematicBody2D
 	{
 		playerMovementHandler.ApplyPhysics();
 	}
-	#endregion
 
-	#region Initialize Methods
+
+
 
 	//Ánh xạ các Child node
 	private void InitializeAllChilds()
 	{
-		
+		playerSFX = (PlayerSFX)GetNode("PlayerSFX");
 		hitbox = (Hitbox)GetNode("SwordPosition").GetNode("SwordArea");
 		hurtBox = (Hurtbox)GetNode("Hurtbox");
 		spriteSheet = (Sprite)GetNode(spriteNodeName);
@@ -63,10 +64,11 @@ public class Player : KinematicBody2D
 		playerStats.Connect(nameof(Stats.OutOfHealth), this, nameof(_on_PlayerStats_OutOfHealth));
 	}
 
-	#endregion
+
 
 	#region Properties
 	public AnimationPlayer AnimationPlayer { get => animationPlayer; }
+	public PlayerSFX PlayerSFX { get => playerSFX;}
 	#endregion
 	#region Signals
 	//Khi kết thúc animation Attack thì chuyển State về Idle
@@ -94,23 +96,21 @@ public class Player : KinematicBody2D
 	//Tìm hitbox của nguồn gây sát thương và áp dụng damage của hitbox đó vào HP của Player
 	private void TakeDamageFromMonster(Area2D area)
 	{
-		GD.Print("touched");
 		if (area is Hitbox hitbox)			
 		{
-			GD.Print("hit");
 			playerStats.CurrentHealth -= hitbox.Damage;
 			playerMovementHandler.ApplyKnockBack(BeingKnockedBack(area));
 			if (playerStats.CurrentHealth >= 0)
 			{
+				playerSFX.PlayHurtSFX();
 				hurtBox.CreateHitEffect();//Sau đó tạo một effect hit
 				hurtBox.StartInvincibility(3);//Sau đó làm cho player không thể bị tấn công trong 0.5 giây
-
 			}
 		}
 	}
 
 	private Vector2 BeingKnockedBack(Node2D attackSourse)
-    {
+	{
 		float knockBackForce = 50F;
 		Vector2 knockback = (GlobalPosition - attackSourse.GlobalPosition).Normalized();
 		knockback *= knockBackForce;

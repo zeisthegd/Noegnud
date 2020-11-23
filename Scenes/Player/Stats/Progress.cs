@@ -33,4 +33,5 @@ public class Progress : TextureRect
 		experience.Value = 0;
 		damage.Text = Global.PlayerStats.Damage.ToString();
 	}
+	public int Score { get { return Convert.ToInt32(points.Text); } }
 }

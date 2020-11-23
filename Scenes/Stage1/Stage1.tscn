@@ -20,7 +20,6 @@ remote_path = NodePath("../../MainCamera")
 zoom = Vector2( 1, 1 )
 
 [node name="Map1Generator" parent="MainSort" instance=ExtResource( 4 )]
-monster1 = ExtResource( 5 )
 monster3 = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

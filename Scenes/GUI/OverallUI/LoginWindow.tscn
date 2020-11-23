@@ -69,7 +69,6 @@ margin_bottom = 65.0
 grow_horizontal = 0
 rect_scale = Vector2( 1, 0.5 )
 custom_fonts/font = SubResource( 1 )
-text = "phong"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

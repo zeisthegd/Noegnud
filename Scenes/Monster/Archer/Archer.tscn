@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Monster/Monster.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Monster/Archer/Archer.cs" type="Script" id=2]
 [ext_resource path="res://Assets/Enemies/Small Monster/Export/Archer.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Generals/Hitbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Monster/Archer/Fireball.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.60331, 5.09632 )
@@ -78,7 +79,11 @@ tracks/0/keys = {
 extents = Vector2( 5.04777, 8.40666 )
 
 [node name="Archer" instance=ExtResource( 1 )]
+collision_layer = 1
+collision_mask = 1
 script = ExtResource( 2 )
+point = 1
+fireball = ExtResource( 5 )
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( 0, -2.50283 )
@@ -88,7 +93,7 @@ shape = SubResource( 1 )
 position = Vector2( 0.500565, -17.5198 )
 texture = ExtResource( 3 )
 hframes = 35
-frame = 20
+frame = 13
 
 [node name="AnimationPlayer" parent="." index="2"]
 autoplay = "Idle"
@@ -103,9 +108,20 @@ anims/Wander = SubResource( 6 )
 position = Vector2( 0, -6.01357 )
 shape = SubResource( 7 )
 
+[node name="MonsterStats" parent="." index="4"]
+maxHealth = 5
+
 [node name="WanderController" parent="." index="6"]
 maxRandomSpeed = 25.0
 
 [node name="Hitbox" parent="." index="7" instance=ExtResource( 4 )]
+visible = false
+
+[node name="AttackCooldown" type="Timer" parent="." index="8"]
+wait_time = 2.0
+one_shot = true
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]
 
 [editable path="Hurtbox"]
+
+[editable path="PlayerDetectionZone"]

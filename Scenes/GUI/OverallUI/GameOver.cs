@@ -5,44 +5,51 @@ public class GameOver : Control
 {
 	Control ui;
 	Label name, score, hiScore;
-	int width = 96, height = 59;
+
+	int currentScore;
 	public override void _Ready()
 	{
 		SetAppearPosition();
-
-		name = (Label)GetNode("Data").GetNode("Username");
-		score = (Label)GetNode("Data").GetNode("Lines");
-		hiScore = (Label)GetNode("Data").GetNode("Highscore");
+		name = (Label)GetNode("Username");
+		score = (Label)GetNode("Lines");
+		hiScore = (Label)GetNode("Highscore");
 		ui = (Control)GetParent();
 
 		SetText();
+		
 	}
+	public void SetCurrentScore(int score)
+    {
+		currentScore = score;
+    }
 
-	private void SetText()
+	public void SetText()
 	{
 		name.Text = AutoLoad.PlayerBUS.GetCurrentPlayer().UserName;
-		//score.Text = ui.TotalLinesScored();
+		this.score.Text = currentScore.ToString() ;
 		hiScore.Text = AutoLoad.PlayerBUS.GetCurrentPlayer().HighScore.ToString();
 	}
 
 	public void SetAppearPosition()
 	{
-		RectGlobalPosition = new Vector2(AutoLoad.WINDOW_WIDTH/2 - width,
-			AutoLoad.WINDOW_HEIGHT / 2 - height);
+		RectGlobalPosition = new Vector2(120,40);
 	}
 	private void _on_Restart_pressed()
 	{
-		GetTree().ReloadCurrentScene();
+		Global.PlayerStats.ResetStats();
+		AutoLoad.Global.ReloadScene(Global.CurrentScene);
 	}
 
 
 	private void _on_MainMenu_pressed()
 	{
+		Global.PlayerStats.ResetStats();
 		AutoLoad.Global.GotoScene(Global.StartMenu);
 	}
 
 	private void _on_Ranking_pressed()
 	{
+		Global.PlayerStats.ResetStats();
 		AutoLoad.Global.GotoScene(Global.Ranking);
 	}
 }

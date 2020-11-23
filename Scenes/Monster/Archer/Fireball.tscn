@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Art/Projectiles/Enemy/Fireball/Fireball3.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Art/Projectiles/Enemy/Fireball/Fireball4.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Art/Projectiles/Enemy/Fireball/Fireball2.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Generals/Hitbox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Monster/Archer/Fireball.cs" type="Script" id=10]
+[ext_resource path="res://Scenes/VFX/EnemyFX/HitEffect.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.5344, 11.0723 )
@@ -27,24 +28,36 @@ extents = Vector2( 16.5289, 9.76007 )
 
 [node name="Fireball" type="KinematicBody2D"]
 scale = Vector2( 0.3, 0.3 )
+collision_layer = 2147483648
+collision_mask = 0
 script = ExtResource( 10 )
+hitEffect = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.4375, -0.0625 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+rotation = 3.14159
 frames = SubResource( 2 )
 animation = "shoot"
-frame = 4
+frame = 5
 playing = true
 
 [node name="Hitbox" parent="." instance=ExtResource( 9 )]
+collision_layer = 2
+collision_mask = 2147483650
+damage = 1
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( -0.431977, -0.114797 )
 shape = SubResource( 3 )
 disabled = false
+
+[node name="DieTime" type="Timer" parent="."]
+one_shot = true
+autostart = true
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
+[connection signal="timeout" from="DieTime" to="." method="_on_DieTime_timeout"]
 
 [editable path="Hitbox"]
