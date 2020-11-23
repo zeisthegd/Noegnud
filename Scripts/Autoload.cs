@@ -17,8 +17,6 @@ public class AutoLoad : Node
 	
 	public const int WINDOW_HEIGHT = 216, WINDOW_WIDTH = 384;
 
-	const int CELL_SIZE = 16;
-
 	static int musicVolume = 0;
 	static int sfxVolume = 0;
 	static bool fullScreen = true;
@@ -133,22 +131,18 @@ public class AutoLoad : Node
 
 	#region Property
 
-	public static int CellSize
-	{
-		get { return CELL_SIZE; }
-	}
 
-    
+	
 
-    public static Global Global { get => global; set => global = value; }
+	public static Global Global { get => global; set => global = value; }
 	public static FloatingTextSpawner FloatingTextSpawner { get => floatingTextSpawner; set => floatingTextSpawner = value; }
 	public static string SavePath { get => savePath;}
 	public static string SavePathForCSharp { get => savePathForCSharp;}
 	internal static PlayerBUS PlayerBUS { get => playerBUS;}
 	public static int MusicVolume { get => musicVolume; set => musicVolume = value; }
 	public static bool FullScreen { get => fullScreen; set => fullScreen = value; }
-    public static int SfxVolume { get => sfxVolume; set => sfxVolume = value; }
-    #endregion
+	public static int SfxVolume { get => sfxVolume; set => sfxVolume = value; }
+	#endregion
 
 
 }

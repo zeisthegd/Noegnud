@@ -151,6 +151,7 @@ margin_bottom = 158.0
 custom_fonts/font = ExtResource( 6 )
 text = "Fullscreen"
 __meta__ = {
+"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 [connection signal="value_changed" from="MusicVolume" to="." method="_on_MusicVolume_value_changed"]

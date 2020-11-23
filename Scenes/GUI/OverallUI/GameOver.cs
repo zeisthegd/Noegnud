@@ -5,6 +5,7 @@ public class GameOver : Control
 {
 	Control ui;
 	Label name, score, hiScore;
+	
 
 	int currentScore;
 	public override void _Ready()
@@ -14,6 +15,7 @@ public class GameOver : Control
 		score = (Label)GetNode("Lines");
 		hiScore = (Label)GetNode("Highscore");
 		ui = (Control)GetParent();
+		
 
 		SetText();
 		

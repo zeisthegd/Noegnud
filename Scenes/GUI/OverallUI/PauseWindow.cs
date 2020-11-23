@@ -7,6 +7,8 @@ public class PauseWindow : Control
 	Label mVolumeValue;
 	int sizeX = 192, sizeY = 108;
 
+	CheckBox fullScreen;
+
 	public override void _Ready()
 	{
 		musicVolume = (HSlider)GetNode("MusicVolume");
@@ -14,6 +16,8 @@ public class PauseWindow : Control
 
 		musicVolume.Value = AutoLoad.MusicVolume;
 		mVolumeValue.Text = ((int)musicVolume.Value).ToString();
+
+		fullScreen = (CheckBox)GetNode("FullScreen");
 
 		SetAppearPosition();
 	}
@@ -24,8 +28,6 @@ public class PauseWindow : Control
 		AutoLoad.Global.GotoScene(Global.Game);
 
 	}
-
-
 
 	private void _on_Menu_pressed()
 	{
@@ -59,10 +61,19 @@ public class PauseWindow : Control
 	}
 	public void SetAppearPosition()
 	{
-		RectGlobalPosition = new Vector2(AutoLoad.WINDOW_WIDTH / 2 - sizeX / 2,
-			AutoLoad.WINDOW_HEIGHT / 2 - sizeY / 2);
+		RectGlobalPosition = new Vector2(104,50);
+	}
+	private void _on_FullScreen_pressed()
+{
+		Global.UiSFXPlayer.PlayUIConfirm();
+		AutoLoad.FullScreen = fullScreen.Pressed;
+		AutoLoad.SaveConfig();
+		AutoLoad.LoadConfig();
 	}
 }
+
+
+
 
 
 

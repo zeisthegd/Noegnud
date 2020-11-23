@@ -1,15 +1,33 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Art/UI/PauseWindow.png" type="Texture" id=1]
-[ext_resource path="res://Art/Buttons/GameOver/GameOverButtons3.png" type="Texture" id=2]
-[ext_resource path="res://Art/Buttons/GameOver/GameOverButtons4.png" type="Texture" id=3]
-[ext_resource path="res://Art/Buttons/GameOver/GameOverButtons7.png" type="Texture" id=4]
-[ext_resource path="res://Art/Buttons/GameOver/GameOverButtons6.png" type="Texture" id=5]
-[ext_resource path="res://Art/Buttons/GameOver/GameOverButtons5.png" type="Texture" id=6]
-[ext_resource path="res://Art/Buttons/GameOver/GameOverButtons8.png" type="Texture" id=7]
-[ext_resource path="res://Scripts/PauseWindow.cs" type="Script" id=8]
-[ext_resource path="res://Art/UI/CloseWindowButton3.png" type="Texture" id=9]
-[ext_resource path="res://Art/UI/CloseWindowButton2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Art/UI/PauseWindow.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Art/UI/Menu/Tick/Tick3.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/UI/Buttons18.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/UI/Buttons13.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/UI/Buttons17.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/UI/Buttons15.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/UI/Buttons14.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/GUI/OverallUI/PauseWindow.cs" type="Script" id=8]
+[ext_resource path="res://Assets/Art/UI/CloseWindowButton1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Art/UI/CloseWindowButton2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Art/UI/Menu/Slider2.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Art/UI/Menu/Tick/Tick1.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Art/UI/Menu/Slider1.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Art/UI/Menu/Tick/Tick2.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Art/UI/Buttons16.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Font/FantasyFont.tres" type="DynamicFont" id=16]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 13 )
+region_rect = Rect2( 0, 0, 112, 9 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 112, 9 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 112, 9 )
 
 [node name="PauseWindow" type="Control"]
 pause_mode = 2
@@ -25,50 +43,50 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Close" type="TextureButton" parent="."]
-margin_left = 173.0
-margin_top = 17.0
-margin_right = 178.0
-margin_bottom = 23.0
-texture_normal = ExtResource( 10 )
-texture_hover = ExtResource( 9 )
+margin_left = 171.148
+margin_top = 21.7785
+margin_right = 181.148
+margin_bottom = 29.7785
+texture_normal = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 
 [node name="Buttons" type="HBoxContainer" parent="."]
-margin_left = 35.0
-margin_top = 80.0
-margin_right = 69.0
-margin_bottom = 108.0
-custom_constants/separation = 22
+margin_left = 12.0
+margin_top = 96.0
+margin_right = 180.0
+margin_bottom = 112.0
+custom_constants/separation = 12
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Restart" type="TextureButton" parent="Buttons"]
-margin_right = 26.0
-margin_bottom = 28.0
-texture_normal = ExtResource( 2 )
-texture_hover = ExtResource( 3 )
+margin_right = 48.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 15 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="Menu" type="TextureButton" parent="Buttons"]
-margin_left = 48.0
-margin_right = 74.0
-margin_bottom = 28.0
-texture_normal = ExtResource( 6 )
-texture_hover = ExtResource( 5 )
+margin_left = 60.0
+margin_right = 108.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="Ranking" type="TextureButton" parent="Buttons"]
-margin_left = 96.0
-margin_right = 122.0
-margin_bottom = 28.0
+margin_left = 120.0
+margin_right = 168.0
+margin_bottom = 16.0
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 7 )
 __meta__ = {
@@ -76,13 +94,24 @@ __meta__ = {
 }
 
 [node name="MusicVolume" type="HSlider" parent="."]
-margin_left = 60.0
-margin_top = 36.0
-margin_right = 160.0
-margin_bottom = 52.0
+margin_left = 84.0
+margin_top = 39.0
+margin_right = 280.0
+margin_bottom = 55.0
+grow_horizontal = 0
+rect_scale = Vector2( 0.5, 1 )
+custom_icons/tick = ExtResource( 12 )
+custom_icons/grabber_disabled = ExtResource( 14 )
+custom_icons/grabber_highlight = ExtResource( 12 )
+custom_icons/grabber = ExtResource( 2 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
 max_value = 10.0
+value = 5.0
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": ""
 }
 
 [node name="MVolumeValue" type="Label" parent="."]
@@ -94,8 +123,20 @@ text = "10"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FullScreen" type="CheckBox" parent="."]
+margin_left = 93.1614
+margin_top = 67.5934
+margin_right = 163.161
+margin_bottom = 91.5934
+custom_fonts/font = ExtResource( 16 )
+text = "Enable"
+__meta__ = {
+"_editor_description_": ""
+}
 [connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]
 [connection signal="pressed" from="Buttons/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="Buttons/Menu" to="." method="_on_Menu_pressed"]
 [connection signal="pressed" from="Buttons/Ranking" to="." method="_on_Ranking_pressed"]
 [connection signal="value_changed" from="MusicVolume" to="." method="_on_MusicVolume_value_changed"]
+[connection signal="pressed" from="FullScreen" to="." method="_on_FullScreen_pressed"]
